@@ -3,11 +3,17 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>Soload</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{{ BRAND_NAME }}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/components.css' %}">
+    {% block extra_head %}{% endblock %}
 </head>
 <body>
-
-    {% block content %}
-    {% endblock %}
+<div class="page">
+    {% include 'shared/_navbar.html' %}
+    <main class = "main">
+        {% block content %}{% endblock %}
+    </main>
+</div>
 </body>
 </html>

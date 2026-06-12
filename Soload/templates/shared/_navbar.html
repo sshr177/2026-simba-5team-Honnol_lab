@@ -1,0 +1,15 @@
+{% load static %}
+<header class = "navbar">
+    <a href="{% url 'main' %}" class="navbar_brand">
+        <img src="{% static 'images/logo_soload.png' %}" alt="Soload" class="navbar__logo-image">
+    </a>
+
+    <nav class = "nav-group">
+        <a href="{% url 'main' %}" class="navbar__link {% if active_nav == 'main' %}navbar__link--active{% endif %}">
+            홈
+        </a>
+        <a href="{% url 'mypage' %}" class="navbar__link {% if active_nav == 'mypage' %}navbar__link--active{% endif %}">
+            마이페이지
+        </a>
+    </nav>
+</header>
