@@ -1,4 +1,41 @@
 {% load static %}
-{% block content %}
 
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/start.css' %}">
+
+<main class = "start-page">
+    <section class="start-hero">
+        <div class="start-logo">
+            <img src="{% static 'images/logo_soload.png' %}" alt = "Soload" class="start-logo_image">
+        </div>
+
+        <p class = "start-slogan">
+            오늘도 혼자, 완벽하게
+        </p>
+
+        <section class="start-action-section">
+
+            <a href="{% url 'login' %}" class="start-card">
+                <div class = "start-card_icon">👤</div>
+
+                <div class = "start-card_title">로그인</div>
+                <div class = "start-card_description">
+                    기존 계정으로<br>
+                    로그인하기
+                </div>
+            </a>                
+
+            <a href="{% url 'signup' %}" class="start-card">
+                <div class = "start-card_icon">✏️</div>
+
+                <div class = "start-card_title">회원가입</div>
+                <div class = "start-card_description">
+                    새 계정을 만들고<br>
+                    혼놀테스트 시작하기
+                </div>
+            </a>
+        </section>
+    </section>
+</main>
 {% endblock %}
