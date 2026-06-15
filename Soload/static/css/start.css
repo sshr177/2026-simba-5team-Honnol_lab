@@ -25,8 +25,8 @@
 }
 
 .start-logo {
-    width: 300px;
-    height: 300px;
+    width: 221px;
+    height: 198px;
 
     display: flex;
     justify-content: center;
@@ -45,50 +45,68 @@
 }
 
 .start-slogan {
-    width: 280px;
-    height: 42px;
-
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 
-    margin-bottom: 40px;
-
-    background-color: #d9d9d9;
-
-    color: #000000;
-    font-size: 24px;
-    font-weight: 600;
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 96px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: 4.8px;
 }
+
+.soload-logo-text_yellow {
+    color: #fde047;
+}
+
+.soload-logo-text_green {
+    color: #669600;
+}
+
 
 .start-action-section{
     display: flex;
     justify-content: center;
     align-items: center;
 
-    gap: 88px;
-    margin-bottom: 64px;
+    gap: 80px;
+    margin-top: 60px;
 }
 
 .start-card {
-    width: 200px;
-    height: 240px;
+    width: 370px;
+    height: 447px;
 
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    gap: 14px;
 
     padding: 28px 20px;
 
-    background-color: #d9d9d9;
+    background-color: #fffbef;
+    border: 2px solid #f0d84d;
+    border-radius: 20px;
 
     box-sizing: border-box;
     text-decoration: none;
+
+    color: inherit;
+    
+    transition: all 0.2s ease;
+}
+
+.start-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
 }
 
 .start-card_icon {
-    width: 56px;
-    height: 56px;
+    width: 70px;
+    height: 70px;
 
     display: flex;
     justify-content: center;
@@ -97,27 +115,27 @@
     margin-bottom: 16px;
 
     border-radius: 50%;
-    background-color: #ffffff;
+    background-color: white;
 
-    font-size: 28px;
+    font-size: 36px;
 }
 
 .start-card_title {
     margin-bottom: 4px;
 
-    color: #000000;
-    font-size: 28px;
+    color: #7e9900;
+    font-size: 32px;
     font-weight: 600;
 }
 
 .start-card_description {
     margin-bottom: 24px;
 
-    color: #000000;
-    font-size: 13px;
+    color: #333;
+    font-size: 14px;
     font-weight: 400;
     text-align: center;
-    line-height: 1.35;
+    line-height: 1.5;
 }
 
 

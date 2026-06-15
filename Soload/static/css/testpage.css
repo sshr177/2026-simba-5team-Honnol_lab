@@ -10,7 +10,7 @@
     box-sizing: border-box;
 }
 
-.testpage main {
+.testpage_main {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,7 +30,7 @@
 
     padding: 48px 72px;
 
-    background-color: #d9d9d9;
+    background-color: #FFFBEA;
 
     box-sizing: border-box;
 }
@@ -38,7 +38,7 @@
 .question-progress {
     margin-bottom: 12px;
     
-    color: #000000;
+    color: #A16207;
     font-size: 16px;
     font-weight: 500;
 }
@@ -52,13 +52,15 @@
     background-color: #ffffff;
 
     overflow: hidden;
+    
+    border: 1px solid var(--dark, #EAB308);
 }
 
 .question-progress-fill {
     width: 10%;
     height: 100%;
 
-    background-color: #000000;
+    background-color: #D2EE96;
 
     transition: width 0.25s ease;
 }
@@ -82,9 +84,9 @@
 
     text-align: center;
 
-    color: #000000;
+    color: #A16207;
     font-size: 40px;
-    font-weight: 600;
+    font-weight: 400;
 }
 
 .answer-list { 
@@ -115,7 +117,7 @@
     width: 36px;
     height: 36px;
 
-    border: 3px solid #000000;
+    border: 2px solid #A5DD2B;
     border-radius: 50%;
 
     background-color: transparent;
@@ -124,9 +126,11 @@
 }
 
 .answer-radio:checked + .answer-circle {
-    border: 5px solid #000000;
-    background-color: #000000;
-    box-shadow: inset 0 0 0 6px #d9d9d9;
+    border: 3px solid #598300;
+    background-color: #598300;
+    box-shadow: inset 0 0 0 3px #fffbea;
+
+    transform: scale(1.5);
 }
 
 .answer-text{
@@ -149,12 +153,14 @@
 
     background-color: #ffffff;
 
-    color: #000000;
+    color: #A16207;
     font-size: 18px;
     font-weight: 500;
     text-decoration: none;
 
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
     cursor: pointer;
+    border-radius: 20px;
 }
 
 .next-question-button:hover,
@@ -167,14 +173,14 @@
 
     padding: 92px 40px;
 
-    border-left: 2px solid #000000;
+    border-left: 2px solid #FDE047;
 
     box-sizing: border-box;
 }
 
 .test-progress-title {
     margin-bottom: 8px;
-    color: #000000;
+    color: #A16207;
     font-size: 20px;
     font-weight: 500;
 }
@@ -182,7 +188,7 @@
 .test-progress-count {
     margin-bottom: 8px;
 
-    color: #000000;
+    color: #A16207;
     font-size: 16px;
     font-weight: 500;
 }
@@ -198,16 +204,17 @@
 
     margin-bottom: 48px;
 
-    background-color: #d9d9d9;
+    background-color: white;
 
     overflow: hidden;
+    border: 1px solid var(--dark, #EAB308);
 }
 
 .test-progress-fill {
     width: 10%;
     height: 100%;
 
-    background-color: #000000;
+    background-color: #A5DD2B;
 
     transition: width 0.25s ease;
 }
@@ -224,7 +231,7 @@
 }
 
 .question-status {
-    color: #000000;
+    color: #A16207;
     font-size: 18px;
     font-weight: 400;
 }
