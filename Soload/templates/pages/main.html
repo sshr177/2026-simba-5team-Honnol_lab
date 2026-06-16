@@ -33,7 +33,7 @@
 
             <div class = "place-card-list">
 
-                <article class = "place-card">
+                <a href="{% url 'placeinfo' %}" class = "place-card">
                     <span class = "place-card_tag">{{ place.level }} 추천</span>
                     <div class = "place-card_image">
                         <img src = "{{place.image.url}}" alt = "{{ place.name }}">
@@ -44,9 +44,9 @@
                         <p>{{ place.location }}</p>
                         <button type = "button" class = "place-card_like">♡</button>
                     </div>
-                </article>
+                </a>
 
-                <article class = "place-card">
+                <a href="{% url 'placeinfo' %}" class = "place-card">
                     <span class = "place-card_tag">{{ place.level }} 추천</span>
                     <div class = "place-card_image">
                         <img src = "{{place.image.url}}" alt = "{{ place.name }}">
@@ -57,9 +57,9 @@
                         <p>{{ place.location }}</p>
                         <button type = "button" class = "place-card_like">♡</button>
                     </div>
-                </article>
+                </a>
 
-                <article class = "place-card">
+                <a href="{% url 'placeinfo' %}" class = "place-card">
                     <span class = "place-card_tag">{{ place.level }} 추천</span>
                     <div class = "place-card_image">
                         <img src = "{{place.image.url}}" alt = "{{ place.name }}">
@@ -70,7 +70,7 @@
                         <p>{{ place.location }}</p>
                         <button type = "button" class = "place-card_like">♡</button>
                     </div>
-                </article>
+                </a>
 
             </div>
         </section>
