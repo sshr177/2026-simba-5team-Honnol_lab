@@ -1,40 +1,36 @@
 .start-page{
     width: 100%;
-    min-height: calc(100vh - 96px);
+    min-height: 100vh;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
-    background-color: #ffffff;
+    background-color: #FFFEFA;
 }
 
 .start-hero{
-    width: 919px;
-    min-height: 640px;
+    width: min(100%, 1000px);
+    min-height: 100vh;
 
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 
-    padding: 48px 0;
-
-    background-color: #ffffff;
+    padding: clamp(32px, 6vw, 80px) 24px;
     
     box-sizing: border-box;
 }
 
 .start-logo {
-    width: 221px;
-    height: 198px;
+    width: clamp(96px, 12vw, 150px);
+    aspect-ratio: 1 / 1 ;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
-    margin-bottom: none;
-
-    background-color: #ffffff;
 }
 
 .start-logo_image{
@@ -49,12 +45,14 @@
     align-items: center;
     justify-content: center;
 
+    margin-top: 8px;
+
     font-family: "Josefin Sans", sans-serif;
-    font-size: 96px;
+    font-size: clamp(48px, 7vw, 96px);
     font-style: normal;
     font-weight: 400;
     line-height: 1;
-    letter-spacing: 4.8px;
+    letter-spacing: 0.05em;
 }
 
 .soload-logo-text_yellow {
@@ -67,25 +65,27 @@
 
 
 .start-action-section{
+    width: min(100%, 760px);
     display: flex;
     justify-content: center;
     align-items: center;
 
-    gap: 80px;
-    margin-top: 60px;
+    gap: clamp(40px, 10vw, 160px);
+    margin-top: clamp(40px, 7vw, 80px);
 }
 
 .start-card {
-    width: 370px;
-    height: 447px;
+    flex: 1 1 0;
+    max-width: 370px;
+    aspect-ratio: 3 / 3.65;
 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 14px;
+    gap: 10px;
 
-    padding: 28px 20px;
+    padding: clamp(28px, 5vw, 48px) 20px;
 
     background-color: #fffbef;
     border: 2px solid #f0d84d;
