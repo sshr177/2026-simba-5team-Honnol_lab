@@ -4,167 +4,193 @@
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/placeinfo.css' %}">
 
-
 <main class="placeinfo-page">
     <section class="placeinfo-container">
-        <section class="place-photo-section">
-            <button type="button" class="place-photo-button place-photo-button--prev">
-                &lt;
-            </button>
-
-            <div class="place-photo-box">
-                <span class="place-photo-text">장소 사진</span>
-            </div>
-
-            <button type="button" class="place-photo-button place-photo-button--next">
-                &gt;
-            </button>
-
-            <div class="place-photo-dots">
-                <span class="place-photo-dot place-photo-dot--active"></span>
-                <span class="place-photo-dot"></span>
-                <span class="place-photo-dot"></span>
-                <span class="place-photo-dot"></span>
-                <span class="place-photo-dot"></span>
-            </div>
-        </section>
-        
 
         <section class="placeinfo-content">
-            <section class="placeinfo-left">
-                <section class="place-summary">
-                    <div class="place-title">
-                        {{ place.name }} (Lv.{{ place.level }} 추천)
+
+            <section class="placeinfo-main">
+
+                <section class="place-photo-section">
+                    <button type="button" class="place-photo-button place-photo-button--prev">
+                        &lt;
+                    </button>
+
+                    <div class="place-photo-box">
+                        <span class="place-photo-text">장소 사진</span>
                     </div>
 
-                    <div class="place-rating">
-                        <span class="place-rating-stars">★ {{ place.star }}</span>
-                        <span class="place-rating-count">(후기 {{ place.rating }}개)</span>
-                    </div>
+                    <button type="button" class="place-photo-button place-photo-button--next">
+                        &gt;
+                    </button>
 
-                    <div class="place-tags">
-                        <span>{{ place.tag1 }}</span>
-                        <span>{{ place.tag2 }}</span>
-                        <span>{{ place.tag3 }}</span>
-                    </div>
-
-                    <div class="place-address">
-                        {{ place.location }}
+                    <div class="place-photo-dots">
+                        <span class="place-photo-dot place-photo-dot--active"></span>
+                        <span class="place-photo-dot"></span>
+                        <span class="place-photo-dot"></span>
+                        <span class="place-photo-dot"></span>
+                        <span class="place-photo-dot"></span>
                     </div>
                 </section>
 
-                <section class="review-preview-section">
-                    <div class="section-header">
-                        <div>사람들 한줄평</div>
-                        <a href="#" class="review-more-button">
-                            긴글 리뷰 보기
-                        </a>
-                    </div>
+                <section class="placeinfo-left">
+                    <section class="place-summary">
+                        <div class="place-title">
+                            {{ place.name }} (Lv.{{ place.level }} 추천)
+                        </div>
 
-                    <div class="review-list">
-                        <article class="review-item">   
-                            <div class="review-user">
-                                아이디(레벨)<br>
-                                주차 후기수
-                            </div>
+                        <div class="place-rating">
+                            <span class="place-rating-stars">★ {{ place.star }}</span>
+                            <span class="place-rating-count">(후기 {{ place.rating }}개)</span>
+                        </div>
 
-                            <p class="review-text">
-                                혼자 노트북 하기 정말 편해요!
-                            </p>
+                        <div class="place-tags">
+                            <span>{{ place.tag1 }}</span>
+                            <span>{{ place.tag2 }}</span>
+                            <span>{{ place.tag3 }}</span>
+                        </div>
 
-                            <div class="review-meta">
-                                콘센트 있음<br>
-                                조용함
-                            </div>
-                            
-                            <a href="#" class="review-detail-link">></a>
-                        </article>
+                        <div class="place-address">
+                            {{ place.location }}
+                        </div>
+                    </section>
 
-                        <article class="review-item">   
-                            <div class="review-user">
-                                아이디(레벨)<br>
-                                주차 후기수
-                            </div>
-
-                            <p class="review-text">
-                                혼자 노트북 하기 정말 편해요!
-                            </p>
-
-                            <div class="review-meta">
-                                콘센트 있음<br>
-                                조용함
-                            </div>
-                            
-                            <a href="#" class="review-detail-link">></a>
-                        </article>
-
-                        <article class="review-item">   
-                            <div class="review-user">
-                                아이디(레벨)<br>
-                                주차 후기수
-                            </div>
-
-                            <p class="review-text">
-                                혼자 노트북 하기 정말 편해요!
-                            </p>
-
-                            <div class="review-meta">
-                                콘센트 있음<br>
-                                조용함
-                            </div>
-                            
-                            <a href="#" class="review-detail-link">
-                                &gt;
+                    <section class="review-preview-section">
+                        <div class="section-header">
+                            <div>사람들 한줄평</div>
+                            <a href="#" class="review-more-button">
+                                긴글 리뷰 보기
                             </a>
-                        </article>
-                    </div>
+                        </div>
 
-                    <a href="#" class="review-list-more">
-                        더 많은 후기 보기 >
-                    </a>
+                        <div class="review-list">
+                            <article class="review-item">
+                                <div class="review-user">
+                                    아이디(레벨)<br>
+                                    주차 후기수
+                                </div>
+
+                                <p class="review-text">
+                                    혼자 노트북 하기 정말 편해요!
+                                </p>
+
+                                <div class="review-meta">
+                                    콘센트 있음<br>
+                                    조용함
+                                </div>
+
+                                <a href="#" class="review-detail-link">&gt;</a>
+                            </article>
+
+                            <article class="review-item">
+                                <div class="review-user">
+                                    아이디(레벨)<br>
+                                    주차 후기수
+                                </div>
+
+                                <p class="review-text">
+                                    혼자 노트북 하기 정말 편해요!
+                                </p>
+
+                                <div class="review-meta">
+                                    콘센트 있음<br>
+                                    조용함
+                                </div>
+
+                                <a href="#" class="review-detail-link">&gt;</a>
+                            </article>
+
+                            <article class="review-item">
+                                <div class="review-user">
+                                    아이디(레벨)<br>
+                                    주차 후기수
+                                </div>
+
+                                <p class="review-text">
+                                    혼자 노트북 하기 정말 편해요!
+                                </p>
+
+                                <div class="review-meta">
+                                    콘센트 있음<br>
+                                    조용함
+                                </div>
+
+                                <a href="#" class="review-detail-link">&gt;</a>
+                            </article>
+
+                            <article class="review-item">
+                                <div class="review-user">
+                                    아이디(레벨)<br>
+                                    주차 후기수
+                                </div>
+
+                                <p class="review-text">
+                                    혼자 노트북 하기 정말 편해요!
+                                </p>
+
+                                <div class="review-meta">
+                                    콘센트 있음<br>
+                                    조용함
+                                </div>
+
+                                <a href="#" class="review-detail-link">&gt;</a>
+                            </article>
+                        </div>
+
+                        <a href="#" class="review-list-more">
+                            더 많은 후기 보기 &gt;
+                        </a>
+                    </section>
                 </section>
+
+                <section class="placeinfo-middle">
+                    <section class="place-detail-card">
+                        <div>장소 정보</div>
+
+                        <dl class="place-detail-list">
+                            <div>
+                                <dt>영업시간</dt>
+                                <dd>09:00 - 22:00</dd>
+                            </div>
+
+                            <div>
+                                <dt>전화번호</dt>
+                                <dd>02-1111-1111</dd>
+                            </div>
+
+                            <div>
+                                <dt>콘센트</dt>
+                                <dd>있음</dd>
+                            </div>
+
+                            <div>
+                                <dt>와이파이</dt>
+                                <dd>있음</dd>
+                            </div>
+
+                            <div>
+                                <dt>일인석</dt>
+                                <dd>있음</dd>
+                            </div>
+
+                            <div>
+                                <dt>주차</dt>
+                                <dd>불가</dd>
+                            </div>
+                        </dl>
+                    </section>
+
+                    <section class="place-map-card">
+                        <div>위치</div>
+
+                        <div class="place-map-box">
+                            <span class="place-map-pin">⌖</span>
+                        </div>
+                    </section>
+                </section>
+
             </section>
 
-            <section class="placeinfo-middle">
-                <section class="place-detail-card">
-                    <div>장소 정보</div>
-                    <dl class="place-detail-list">
-                        <div>
-                            <dt>영업시간</dt>
-                            <dd>09:00 - 22:00</dd>
-                        </div>
-                        <div>
-                            <dt>전화번호</dt>
-                            <dd>02-1111-1111</dd>
-                        </div>
-                        <div>
-                            <dt>콘센트</dt>
-                            <dd>있음</dd>
-                        </div>
-                        <div>
-                            <dt>와이파이</dt>
-                            <dd>있음</dd>
-                        </div>
-                        <div>
-                            <dt>일인석</dt>
-                            <dd>있음</dd>
-                        </div>
-                        <div>
-                            <dt>주차</dt>
-                            <dd>불가</dd>
-                        </div>
-                    </dl>
-                </section>
-
-                <section class="place-map-card">
-                    <div>위치</div>
-
-                    <div class="place-map-box">
-                        <span class="place-map-pin">⌖</span>
-                    </div>
-                </section>
-            </section>
-        
             <section class="placeinfo-right">
                 <section class="stats-section">
                     <div>눈치지수</div>
@@ -242,7 +268,7 @@
                 </section>
 
                 <section class="place-action-section">
-                    <div class="place-review-cta">   
+                    <div class="place-review-cta">
                         <div>이 장소를 발견하셨나요?</div>
                         <p>
                             이번 방문 후기를 작성하고,<br>
@@ -260,20 +286,16 @@
                             아래 병아리를 눌러<br>
                             도움을 받아보세요!
                         </p>
+
                         <a href="#" class="beginner-help-button">
                             🐣
                         </a>
                     </div>
                 </section>
-            </section>    
+            </section>
+
         </section>
+
     </section>
 </main>
-=======
-<div class="placeinfo_main">
-    <div class="place_info">
-        sdfd
-    </div>
-</div>
-
 {% endblock %}
