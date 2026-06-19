@@ -516,3 +516,69 @@
         grid-template-columns: 1fr;
     }
 }
+
+.help-modal{
+    position: fixed;
+    inset: 0;
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(0, 0, 0, 0.3);
+
+    z-index: 999;
+}
+
+.help-modal.active{
+    display: flex;
+}
+
+.help-modal-content{
+    width: 500px;
+    min-height: 420px;
+
+    padding: 40px;
+
+    background: #fff;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    box-sizing: border-box;
+}
+
+.help-title {
+    margin: 0 0 40px;
+
+    font-size: 48px;
+    font-weight: 600;
+}
+
+.help-list{
+    width: 100%;
+
+    margin: 0;
+    padding-left: 30px;
+
+    font-size: 20px;
+    line-height: 2;
+}
+
+.help-description{
+    width: 100%;
+    margin-top: 40px;
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+.help-close-button{
+    width: 100px;
+    height: 45px;
+    margin-top: 30px;
+    border: none;
+    background: #fff;
+    font-size: 18px;
+    cursor: pointer;
+}
