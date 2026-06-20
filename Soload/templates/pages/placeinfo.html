@@ -5,6 +5,10 @@
 <link rel="stylesheet" href="{% static 'css/placeinfo.css' %}">
 
 <main class="placeinfo-page">
+
+    <div id="help-data" data-category="{{ place.category }}" data-level="{{ user_profile.level }}">
+
+    </div>
     <section class="placeinfo-container">
 
         <section class="placeinfo-content">
@@ -292,7 +296,7 @@
 
 
 
-    <div class="help-modal" id="help-modal">
+    <!-- <div class="help-modal" id="help-modal">
         <div class="help-modal-content">
             <div class="help-title">
                 도움말
@@ -312,8 +316,31 @@
 
             <button type="button" class="help-close-button" id="help-close-button">닫기</button>
         </div>
-    </div>
+    </div> -->
 
+    <div class="help-modal" id="help-modal">
+        <div class="help-modal-content">
+            <div class="help-title" id="help-title">
+                도움말
+            </div>
+
+            <div class="help-subtitle" id="help-subtitle">
+                장소와 레벨에 맞는 혼놀 팁들을 알려드릴게요
+            </div>
+
+            <ul class="help-list" id="help-list">
+
+            </ul>
+
+            <p class="help-description" id="help-description">
+
+            </p>
+
+            <button type="button" class="help-close-button" id="help-close-button">
+                닫기
+            </button>
+        </div>
+    </div>
 </main>
 
 <script src="{% static 'js/placeinfo.js' %}"></script>
