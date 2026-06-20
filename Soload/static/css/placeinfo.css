@@ -240,12 +240,12 @@
     grid-row: 2 / 4;
 
     min-width: 0;
-    min-height: 220px;
+    min-height: 180px;
     margin-bottom: 0;
     border-radius: 14px;
 
     background: var(--lighter, #FFFEFA);
-    padding: 18px;
+    padding: 15px;
     box-sizing: border-box;
 }
 
@@ -254,19 +254,19 @@
     grid-row: 4 / 5;
 
     min-width: 0;
-    height: 230px;
+    height: 180px;
 
     background: var(--lighter, #FFFEFA);
-    padding: 18px;
+    padding: 15px;
     box-sizing: border-box;
 }
 
 .place-detail-card > div,
 .place-map-card > div {
-    margin-bottom: 14px;
+    margin-bottom: 10px;
 
     color: var(--darker, #713F12);
-    font-size: 18px;
+    font-size: 15px;
     font-weight: 700;
 }
 
@@ -279,25 +279,25 @@
     justify-content: space-between;
     gap: 16px;
 
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 }
 
 .place-detail-list dt {
     color: var(--dark-active, #A16207);
-    font-size: 16px;
+    font-size: 13px;
     font-weight: 400;
 }
 
 .place-detail-list dd {
     margin: 0;
 
-    font-size: 16px;
+    font-size: 13px;
     font-weight: 400;
     color: var(--dark-active, #A16207);
 }
 
 .place-map-box {
-    height: 170px;
+    height: 180px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -307,7 +307,7 @@
 
 .place-map-pin {
     color: var(--darker, #713F12);
-    font-size: 28px;
+    font-size: 30px;
 }
 
 .placeinfo-right {
@@ -316,23 +316,23 @@
 
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 0;
 
     min-width: 0;
 }
 
 .stats-section {
-    padding-bottom: 18px;
-    margin-bottom: 18px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
 
     border-bottom: 2px solid #713F12;
 }
 
 .stats-section > div:first-child {
-    margin-bottom: 14px;
+    margin-bottom: 13px;
 
     color: var(--darker, #713F12);
-    font-size: 22px;
+    font-size: 19px;
     font-weight: 700;
 }
 
@@ -342,12 +342,12 @@
     align-items: center;
     gap: 12px;
 
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .stat-row span {
     color: var(--darker, #713F12);
-    font-size: 16px;
+    font-size: 13px;
     font-weight: 500;
 }
 
@@ -411,7 +411,7 @@
 }
 
 .review-write-button {
-    width: 170px;
+    width: 180px;
     height: 48px;
 
     display: flex;
