@@ -1,6 +1,6 @@
 .start-page{
     width: 100%;
-    min-height: 100vh;
+    height: calc(100dvh - 62px);
 
     display: flex;
     justify-content: center;
@@ -11,20 +11,21 @@
 
 .start-hero{
     width: min(100%, 1000px);
-    min-height: 100vh;
+    height: 100%;
+    min-height: 0;
 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 
-    padding: clamp(32px, 6vw, 80px) 24px;
+    padding: clamp(16px, 3vh, 32px) 24px;
     
     box-sizing: border-box;
 }
 
 .start-logo {
-    width: clamp(96px, 12vw, 150px);
+    width: clamp(70px, 12vh, 120px);
     aspect-ratio: 1 / 1 ;
 
     display: flex;
@@ -48,7 +49,7 @@
     margin-top: 8px;
 
     font-family: "Josefin Sans", sans-serif;
-    font-size: clamp(48px, 7vw, 96px);
+    font-size: clamp(40px, 8vh, 72px);
     font-style: normal;
     font-weight: 400;
     line-height: 1;
@@ -71,13 +72,12 @@
     align-items: center;
 
     gap: clamp(40px, 10vw, 160px);
-    margin-top: clamp(40px, 7vw, 80px);
+    margin-top: clamp(20px, 5vh, 48px);
 }
 
 .start-card {
     flex: 1 1 0;
     max-width: 370px;
-    aspect-ratio: 3 / 3.65;
 
     display: flex;
     flex-direction: column;
@@ -85,7 +85,9 @@
     justify-content: center;
     gap: 10px;
 
-    padding: clamp(28px, 5vw, 48px) 20px;
+    aspect-ratio: auto;
+    height: clamp(220px, 40vh, 330px);
+    padding: clamp(16px, 3vh, 28px) 20px;
 
     background-color: #fffbef;
     border: 2px solid #f0d84d;
