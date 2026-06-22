@@ -20,54 +20,12 @@
             <span class="brown-light-s">해당 장소에 있었던 시간대를 모두 선택해주세요.</span>
         </div>
         <div class="time_box_group">
+            {% for vt in visit_times %}
             <label class="time_box">
-                <input type="checkbox" name="time" value="9" class="time_checkbox">
-                <span class="subtitle-brown">9:00-10:00</span>
+                <input type="checkbox" name="visit_times" value="{{ vt.id }}" class="time_checkbox">
+                <span class="subtitle-brown">{{ vt.name}}</span>
             </label>
-            <label class="time_box">
-                <input type="checkbox" name="time" value="10">
-                <span class="subtitle-brown">10:00-11:00</span>
-            </label>
-            <label class="time_box">
-                <input type="checkbox" name="time" value="11">
-                <span class="subtitle-brown">11:00-12:00</span>
-            </label>
-            <label class="time_box">
-                <input type="checkbox" name="time" value="12">
-                <span class="subtitle-brown">12:00-13:00</span>
-            </label>
-            <label class="time_box">
-                <input type="checkbox" name="time" value="13">
-                <span class="subtitle-brown">13:00-14:00</span>
-            </label>
-            <label class="time_box">
-                <input type="checkbox" name="time" value="14">
-                <span class="subtitle-brown">14:00-15:00</span>
-            </label>
-            <label class="time_box">
-                <input type="checkbox" name="time" value="15">
-                <span class="subtitle-brown">15:00-16:00</span>
-            </label>
-            <label class="time_box">
-                <input type="checkbox" name="time" value="16">
-                <span class="subtitle-brown">16:00-17:00</span>
-            </label>
-            <label class="time_box">
-                <input type="checkbox" name="time" value="17">
-                <span class="subtitle-brown">17:00-18:00</span>
-            </label>
-            <label class="time_box">
-                <input type="checkbox" name="time" value="18">
-                <span class="subtitle-brown">18:00-19:00</span>
-            </label>
-            <label class="time_box">
-                <input type="checkbox" name="time" value="19">
-                <span class="subtitle-brown">19:00-20:00</span>
-            </label>
-            <label class="time_box">
-                <input type="checkbox" name="time" value="20">
-                <span class="subtitle-brown">20:00 이후</span>
-            </label>
+            {% endfor %}
         </div>
     </div>
     <div class="review_write">
@@ -76,50 +34,12 @@
             <span class="brown-light-s">해당 장소를 방문한 목적을 선택해주세요.</span>
         </div>
         <div class="purpose_box_group">
+            {% for pp in purposes %}
             <label class="purpose_box">
-                <input type="checkbox" name="purpose" value="study">
-                <span class="subtitle-brown">공부</span>
+                <input type="checkbox" name="purposes" value="{{ pp.id }}">
+                <span class="subtitle-brown">{{ pp.name }}</span>
             </label>
-            <label class="purpose_box">
-                <input type="checkbox" name="purpose" value="homework">
-                <span class="subtitle-brown">과제</span>
-            </label>
-            <label class="purpose_box">
-                <input type="checkbox" name="purpose" value="readbook">
-                <span class="subtitle-brown">독서</span>
-            </label>
-            <label class="purpose_box">
-                <input type="checkbox" name="purpose" value="eat">
-                <span class="subtitle-brown">혼밥</span>
-            </label>
-            <label class="purpose_box">
-                <input type="checkbox" name="purpose" value="date">
-                <span class="subtitle-brown">데이트</span>
-            </label>
-            <label class="purpose_box">
-                <input type="checkbox" name="purpose" value="looking">
-                <span class="subtitle-brown">구경</span>
-            </label>
-            <label class="purpose_box">
-                <input type="checkbox" name="purpose" value="work">
-                <span class="subtitle-brown">작업</span>
-            </label>
-            <label class="purpose_box">
-                <input type="checkbox" name="purpose" value="rest">
-                <span class="subtitle-brown">휴식</span>
-            </label>
-            <label class="purpose_box">
-                <input type="checkbox" name="purpose" value="waiting">
-                <span class="subtitle-brown">대기</span>
-            </label>
-            <label class="purpose_box">
-                <input type="checkbox" name="purpose" value="beforemeeting">
-                <span class="subtitle-brown">모임 전</span>
-            </label>
-            <label class="purpose_box">
-                <input type="checkbox" name="purpose" value="other">
-                <span class="subtitle-brown" >기타</span>
-            </label>
+            {% endfor %}
         </div>
     </div>
     <div class="review_write">
@@ -129,17 +49,17 @@
         </div>
         <div class="sense_score_box_group">
             <label class="sense_score_box">
-                <input type="radio" name="sense_score" value="1">
+                <input type="radio" name="nunchi_score" value="1">
                 <span class="brown-dark-m">낮음</span>
                 <span class="brown-dark-m">(괜찮았어요)</span>
             </label>
             <label class="sense_score_box">
-                <input type="radio" name="sense_score" value="2">
+                <input type="radio" name="nunchi_score" value="2">
                 <span class="brown-dark-m">보통</span>
                 <span class="brown-dark-m">(그저 그래요)</span>
             </label>
             <label class="sense_score_box">
-                <input type="radio" name="sense_score" value="3">
+                <input type="radio" name="nunchi_score" value="3">
                 <span class="brown-dark-m">높음</span>
                 <span class="brown-dark-m">(눈치가 보였어요)</span>
             </label>
@@ -151,70 +71,12 @@
             <span class="brown-light-s">해당 장소를 잘 표현하는 태그를 선택해주세요.</span>
         </div>
         <div class="tage_box_group">
+            {% for t in tags %}
             <label class="tage_box">
-                <input type="checkbox" name="tag" value="quiet">
-                <span class="subtitle-brown">#조용함</span>
+                <input type="checkbox" name="tags" value="{{ t.id }}">
+                <span class="subtitle-brown">#{{ t.name }}</span>
             </label>
-            <label class="tage_box">
-                <input type="checkbox" name="tag" value="noise">
-                <span class="subtitle-brown">#시끄러움</span>
-            </label>
-            <label class="tage_box">
-                <input type="checkbox" name="tag" value="good_atmosphere">
-                <span class="subtitle-brown">#분위기좋음</span>
-            </label>
-            <label class="tage_box">
-                <input type="checkbox" name="tag" value="clean">
-                <span class="subtitle-brown">#깔끔함</span>
-            </label>
-            <label class="tage_box">
-                <input type="checkbox" name="tag" value="spacious">
-                <span class="subtitle-brown">#넓은공간</span>
-            </label>
-            <label class="tage_box">
-                <input type="checkbox" name="tag" value="good_for_study">
-                <span class="subtitle-brown">#혼자공부하기좋음</span>
-            </label>
-            <label class="tage_box">
-                <input type="checkbox" name="tag" value="parking_available">
-                <span class="subtitle-brown">#주차가능</span>
-            </label>
-            <label class="tage_box">
-                <input type="checkbox" name="tag" value="good_view">
-                <span class="subtitle-brown">#뷰좋음</span>
-            </label>
-            <label class="tage_box">
-                <input type="checkbox" name="tag" value="crowded">
-                <span class="subtitle-brown">#사람많음</span>
-            </label>
-            <label class="tage_box">
-                <input type="checkbox" name="tag" value="large_tables">
-                <span class="subtitle-brown">#테이블넓음</span>
-            </label>
-            <label class="tage_box">
-                <input type="checkbox" name="tag" value="wifi">
-                <span class="subtitle-brown">#와이파이빵빵</span>
-            </label>
-            <label class="tage_box">
-                <input type="checkbox" name="tag" value="nice_interior">
-                <span class="subtitle-brown">#인테리어예쁨</span>
-            </label>
-            <label class="tage_box">
-                <input type="checkbox" name="tag" value="good_value">
-                <span class="subtitle-brown">#가성비좋음</span>
-            </label>
-            <label class="tage_box">
-                <input type="checkbox" name="tag" value="pet_friendly">
-                <span class="subtitle-brown">#반려동물가능</span>
-            </label>
-            <label class="tage_box">
-                <input type="checkbox" name="tag" value="good_for_browsing">
-                <span class="subtitle-brown">#구경하기좋음</span>
-            </label>
-            <label class="tage_box">
-                <input type="checkbox" name="tag" value="many_solo_visitors">
-                <span class="subtitle-brown">#혼자온사람많음</span>
-            </label>
+            {% endfor %}
         </div>
     </div>
     <div class="review_write">
@@ -224,7 +86,7 @@
         </div>
         <div class="recommended_level_box_group">
             <label class="recommended_level_box">
-                <input type="radio" name="level" value="1">
+                <input type="radio" name="recommended_level" value="1">
                 <span class="brown-dark-l">Lv.1</span>
                 <div class="level_box_content">
                     <span class="brown-dark-m">혼놀 초보자도</span>
@@ -232,7 +94,7 @@
                 </div>
             </label>
             <label class="recommended_level_box">
-                <input type="radio" name="level" value="2">
+                <input type="radio" name="recommended_level" value="2">
                 <span class="brown-dark-l">Lv.2</span>
                 <div class="level_box_content">
                     <span class="brown-dark-m">혼자 가기</span>
@@ -240,7 +102,7 @@
                 </div>
             </label>
             <label class="recommended_level_box">
-                <input type="radio" name="level" value="3">
+                <input type="radio" name="recommended_level" value="3">
                 <span class="brown-dark-l">Lv.3</span>
                 <div class="level_box_content">
                     <span class="brown-dark-m">보통이에요</span>
@@ -248,7 +110,7 @@
                 </div>
             </label>
             <label class="recommended_level_box">
-                <input type="radio" name="level" value="4">
+                <input type="radio" name="recommended_level" value="4">
                 <span class="brown-dark-l">Lv.4</span>
                 <div class="level_box_content">
                     <span class="brown-dark-m">약간 눈치가</span>
@@ -256,7 +118,7 @@
                 </div>
             </label>
             <label class="recommended_level_box">
-                <input type="radio" name="level" value="5">
+                <input type="radio" name="recommended_level" value="5">
                 <span class="brown-dark-l">Lv.5</span>
                 <div class="level_box_content">
                     <span class="brown-dark-m">혼자 가기</span>
@@ -271,11 +133,11 @@
         </div>
         <div class="kiosk_box_group">
             <label class="kiosk_box">
-                <input type="radio" name="kiosk" value="yes">
+                <input type="radio" name="has_kiosk" value="yes">
                 <span class="subtitle-brown">있음</span>
             </label>
             <label class="kiosk_box">
-                <input type="radio" name="kiosk" value="no">
+                <input type="radio" name="has_kiosk" value="no">
                 <span class="subtitle-brown">없음</span>
             </label>
         </div>
@@ -286,11 +148,11 @@
         </div>
         <div class="sole_seat_box_group">
             <label class="sole_seat_box">
-                <input type="radio" name="sole_seat" value="yes">
+                <input type="radio" name="has_single_seat" value="yes">
                 <span class="subtitle-brown">있음</span>
             </label>
             <label class="sole_seat_box">
-                <input type="radio" name="sole_seat" value="no">
+                <input type="radio" name="has_single_seat" value="no">
                 <span class="subtitle-brown">없음</span>
             </label>
         </div>
@@ -301,11 +163,11 @@
         </div>
         <div class="power_outlet_box_group">
             <label class="power_outlet_box">
-                <input type="radio" name="power_outlet" value="yes">
+                <input type="radio" name="has_con" value="yes">
                 <span class="subtitle-brown">있음</span>
             </label>
             <label class="power_outlet_box">
-                <input type="radio" name="power_outlet" value="no">
+                <input type="radio" name="has_con" value="no">
                 <span class="subtitle-brown">없음</span>
             </label>
         </div>
@@ -316,11 +178,11 @@
         </div>
         <div class="wife_box_group">
             <label class="wife_box">
-                <input type="radio" name="wifi" value="yes">
+                <input type="radio" name="has_wifi" value="yes">
                 <span class="subtitle-brown">있음</span>
             </label>
             <label class="wife_box">
-                <input type="radio" name="wifi" value="no">
+                <input type="radio" name="has_wifi" value="no">
                 <span class="subtitle-brown">없음</span>
             </label>
         </div>
@@ -331,15 +193,15 @@
             <span class="brown-light-s">해당 장소의 별점을 적어주세요!</span>
         </div>
         <div class="place_rating">
-            <input id="star1" type="radio" name="place_rating" value="1">
+            <input id="star1" type="radio" name="rating" value="1">
             <label for="star1"></label>
-            <input id="star2" type="radio" name="place_rating" value="2">
+            <input id="star2" type="radio" name="rating" value="2">
             <label for="star2"></label>
-            <input id="star3" type="radio" name="place_rating" value="3">
+            <input id="star3" type="radio" name="rating" value="3">
             <label for="star3"></label>
-            <input id="star4" type="radio" name="place_rating" value="4">
+            <input id="star4" type="radio" name="rating" value="4">
             <label for="star4"></label>
-            <input id="star5" type="radio" name="place_rating" value="5">
+            <input id="star5" type="radio" name="rating" value="5">
             <label for="star5"></label>
         </div>
     </div>
@@ -348,7 +210,7 @@
             <span class="brown-dark-l">11. 한줄 후기 작성</span>
             <span class="brown-light-s">이 장소를 한 줄로 표현한다면?</span>
         </div>
-        <textarea name="review" class="real_review" placeholder="예) 조용하고 집중이 잘 되는 카페였어요!"></textarea>
+        <textarea name="content" class="real_review" placeholder="예) 조용하고 집중이 잘 되는 카페였어요!"></textarea>
     </div>
 </div>
 <div class="review_button">

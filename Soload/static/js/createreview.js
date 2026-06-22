@@ -1,12 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
     const tagCheckboxes = document.querySelectorAll(
-        'input[name="tag"]'
+        'input[name="tags"]'
     );
 
     tagCheckboxes.forEach(function (checkbox) {
         checkbox.addEventListener("change", function () {
             const selectedTags = document.querySelectorAll(
-                'input[name="tag"]:checked'
+                'input[name="tags"]:checked'
             );
 
             if (selectedTags.length > 4) {
@@ -21,16 +21,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     reviewForm.addEventListener("submit", function (event) {
         const requiredGroups = [
-            "time",
-            "purpose",
-            "sense_score",
-            "tag",
-            "level",
-            "kiosk",
-            "sole_seat",
-            "power_outlet",
-            "wifi",
-            "place_rating"
+            "visit_times",
+            "purposes",
+            "nunchi_score",
+            "tags",
+            "recommended_level",
+            "has_kiosk",
+            "has_single_seat",
+            "has_con",
+            "has_wifi",
+            "rating"
         ];
 
         for (const groupName of requiredGroups) {
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         const review = document.querySelector(
-            'textarea[name="review"]'
+            'textarea[name="content"]'
         );
 
         if (review.value.trim() === "") {
