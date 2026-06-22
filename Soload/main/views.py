@@ -49,6 +49,8 @@ def login(request):
             auth_login(request, user)
 
             return redirect('main')
+        else:
+            return render(request, 'pages/login.html', {'error': '아이디 또는 비밀번호가 일치하지 않습니다.'})
 
     return render(request, 'pages/login.html')
 
@@ -70,7 +72,7 @@ def signup(request):
 
             return redirect('testpage')
         else:
-            return render(request, 'pages/signup.html', {'error': '비밀전호가 일치하지 않습니다.'})
+            return render(request, 'pages/signup.html', {'error': '비밀번호가 일치하지 않습니다.'})
     
     return render(request, 'pages/signup.html')
 
