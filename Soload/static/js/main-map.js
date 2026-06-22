@@ -69,11 +69,70 @@ document.addEventListener("DOMContentLoaded", function () {
                 };
 
                 console.log("백엔드로 보낼 장소:", placeData);
+                sendPlaceToBackend(placeData);
 
             });
 
             resultList.appendChild(item);
         });
+    }
+
+    function sendPlaceToBackend(placeData) {
+        const formData = new FormData();
+
+        formData.append("kakao_id", placeData.kakao_id);
+        formData.append("name", placeData.name);
+        formData.append("address", placeData.address);
+        formData.append("latitude", placeData.latitude);
+        formData.append("longitude", placeData.longitude);
+        formData.append("category", placeData.category);
+        formData.append("phone", placeData.phone);
+
+        fetch("/place/create-or-get/", {
+            method: "POST",
+            headers: {
+                "X-CSRFToken": getCSRFToken()
+            },
+            body: formData
+        })
+        .then(function (response) {
+            if (!response.ok) {
+                throw new Error("서버 요청 실패");
+            }
+
+            if (response.redirected) {
+                window.location.href = response.url;
+                return;
+            }
+
+            return response.json();
+        })
+        .then(function (data) {
+            if (!data) {
+                return;
+            }
+
+            console.log("백엔드 응답:", data);
+
+            window.location.href = `/placeinfo/${data.place_id}/`;
+        })
+        .catch(function (error) {
+            console.error("장소 저장 중 오류:", error);
+        });
+    }
+
+    function getCSRFToken() {
+        const cookie = document.cookie
+            .split("; ")
+            .find(function (row) {
+                return row.startsWith("csrftoken=");
+            });
+
+        if (!cookie) {
+            return "";
+        }
+
+        return cookie.split("=")[1];
     }
 
     if (!searchInput || !searchButton) {
