@@ -8,10 +8,29 @@ from django.db.models import Avg, Count
 def main(request):
     if not request.user.is_authenticated: 
         return redirect('start')
-    level = request.user.profile.level
+
+    user_profile = request.user.profile
+    level = user_profile.level
     places = Place.objects.filter(recommended_level=level)
+
+    places_data = []
+
+    for place in places:
+        if place.latitude is None or place.longitude is None:
+            continue
+
+        places_data.append({
+            "id": place.id,
+            "name": place.name,
+            "lat": float(place.latitude),
+            "lng": float(place.longitude),
+            "recommended_level": place.recommended_level,
+        })
+
     return render(request, 'pages/main.html', {
+        'user_profile': user_profile,
         'places': places,
+        'places_data': places_data,
         'active_nav': 'main'
     })
 
