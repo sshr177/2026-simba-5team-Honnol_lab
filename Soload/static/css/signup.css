@@ -3,20 +3,24 @@
     justify-content: center;
     align-items: center;
 
-    min-height: calc(100vh - 87px);
+    height: calc(100dvh - 62px);
+    min-height: 0;
+
+    padding: clamp(12px, 2vh, 24px) 20px;
+    box-sizing: border-box;
 }
 
 .signup-section {
-    width: 460px;
+    width: min(100%, 460px);
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .signup-title {
-    margin-bottom: 12px;
+    margin-bottom: clamp(6px, 1.5vh, 12px);
     color: #669600;
-    font-size: 48px;
+    font-size: clamp(36px, 6vh, 48px);
     font-weight: 400;
     justify-content: center;
     font-style: normal;
@@ -26,22 +30,22 @@
 
 .signup-description {
     color: #eab308;
-    font-size: 24px;
+    font-size: clamp(18px, 3vh, 24px);
     font-weight: 400;
-    margin-bottom: 20px;
+    margin-bottom: clamp(10px, 2.5vh, 20px);
 }
 
 .signup-form {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 32px;
+    gap: clamp(14px, 2.5vh, 24px);
 }
 
 .signup-field {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: clamp(8px, 1.5vh, 12px);
 }
 
 .signup-label {
@@ -52,7 +56,7 @@
 
 .signup-input {
     width: 100%;
-    height: 60px;
+    height: clamp(48px, 7vh, 60px);
 
     padding: 0 20px;
 
@@ -78,9 +82,9 @@
 
 .signup-button {
     width: 100%;
-    height: 60px;
+    height: clamp(48px, 7vh, 60px);
 
-    margin-top: 20px;
+    margin-top: clamp(8px, 2vh, 20px);
 
     border: none;
     border-radius: 10px;
@@ -98,4 +102,12 @@
 
 .signup-button:hover {
     background-color: #e8ca35;
+}
+
+@media (max-height: 600px) {
+    .signup-page {
+        height: auto;
+        min-height: calc(100dvh - 62px);
+        align-items: flex-start;
+    }
 }

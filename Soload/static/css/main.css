@@ -1,13 +1,14 @@
 .mainpage {
     width: 100%;
-    min-height: calc(100vh - 51px);
+    height: calc(100dvh - 62px);
+    min-height: 0;
 
     display: grid;
     grid-template-columns: repeat(10, 1fr);
-    grid-template-rows: auto auto;
+    grid-template-rows: 180px minmax(0, 1fr);
     gap: 32px;
 
-    padding: 40px 48px;
+    padding: clamp(20px, 3vh, 32px) 48px;
 
     background-color: #ffffff;
     box-sizing: border-box;
@@ -18,14 +19,14 @@
     grid-row: 1 / 2;
 
     width: 100%;
-    min-height: 180px;
+    min-height: 0;
 
     display: flex;
     align-items: center;
     flex-direction: row;
     gap: 30px;
 
-    padding: 42px 34px;
+    padding: clamp(20px, 3vh, 30px) 34px;
     align-self: stretch;
 
     background-color: var(--light, #FFFBEA);
@@ -124,6 +125,7 @@
     width: 100%;
 
     min-width: 0;
+    min-height: 0;
 }
 
 .level-recommend-place {
@@ -148,7 +150,7 @@
 
     overflow: hidden;
 
-    min-height: 280px;
+    min-height: clamp(220px, 32vh, 280px);
 
     border-radius: 24px;
     background-color: var(--light, #FFFBEA);
@@ -180,7 +182,7 @@
 
 .place-card_image {
     width: 100%;
-    height: 170px;
+    height: clamp(130px, 20vh, 170px);
 
     overflow: hidden;
 }
@@ -244,6 +246,7 @@
     grid-row: 1 / 3;
 
     min-width: 0;
+    min-height: 0;
 
     display: flex;
     flex-direction: column;
@@ -301,7 +304,7 @@
     position: relative;
 
     width: 100%;
-    min-height: 640px;
+    min-height: 0;
     flex: 1;
 
     display: flex;
@@ -348,8 +351,11 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 900px) {
     .mainpage {
+        height: auto;
+        min-height: calc(100dvh - 62px);
+
         grid-template-columns: repeat(6, 1fr);
         grid-template-rows: auto auto auto;
     }
