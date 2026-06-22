@@ -26,16 +26,8 @@
             {% widthratio user_profile.exp user_profile.required_exp 100 as exp_percent %}
 
             <div class="mypage_progress">
-                <div 
-                class="mypage_progress-fill" 
-                style="width: 
-                    {% if user_profile.level >= 5 %}
-                        100
-                    {% else %}
-                        {{ exp_percent }}
-                    {% endif %}
-                    %;"
-                ></div>
+                <div class="mypage_progress-fill" style="width: {% if user_profile.level >= 5 %}100{% else %}{{ exp_percent }}{% endif %}%;">
+                </div>
             </div>
         </div>
     </section>
