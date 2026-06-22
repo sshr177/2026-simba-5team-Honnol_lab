@@ -51,6 +51,25 @@ document.addEventListener("DOMContentLoaded", function () {
                     map: map,
                     position: position
                 });
+
+                const confirmAdd = confirm(`${place.place_name}을(를) 추가할까요?`);
+
+                if (!confirmAdd) {
+                    return;
+                }
+
+                const placeData = {
+                    kakao_id: place.id,
+                    name: place.place_name,
+                    address: place.road_address_name || place.address_name,
+                    latitude: place.y,
+                    longitude: place.x,
+                    category: place.category_group_name,
+                    phone: place.phone
+                };
+
+                console.log("백엔드로 보낼 장소:", placeData);
+
             });
 
             resultList.appendChild(item);
