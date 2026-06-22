@@ -60,16 +60,11 @@
             <button type="button">🔍</button>
         </div>
 
-        <div class="map-section_map">
-            지도
-
-            <div class="map-control">
-                <button type="button">+</button>
-                <button type="button">-</button>
-                <button type="button">@</button>
-            </div>
-        </div>
+        <div class="map-section_map" id="map"></div>
     </section>
 
 </main>
+
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0eb280ffaedbceff3e438e6a20bc4fc3"></script>
+<script src="{% static 'js/main-map.js' %}"></script>
 {% endblock %}
