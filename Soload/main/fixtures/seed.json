@@ -18,7 +18,7 @@
     "parking_available": false,
     "created_at": "2026-06-22T17:36:01.712Z",
     "latitude": 37.5636,
-    "longitude": 126.9250,
+    "longitude": 126.925,
     "kakao_id": ""
   }
 },
@@ -28,6 +28,30 @@
   "fields": {
     "place": 1,
     "image": "places/스크린샷_2026-05-11_오후_11_L6v6GTm.26.41.png"
+  }
+},
+{
+  "model": "main.placeimage",
+  "pk": 2,
+  "fields": {
+    "place": 1,
+    "image": "places/스크린샷_2026-06-21_오전_5_8bEFUSq.58.53.png"
+  }
+},
+{
+  "model": "main.placeimage",
+  "pk": 3,
+  "fields": {
+    "place": 1,
+    "image": "places/_77a21538-53ac-4c8c-bb3b-0bd61109a716.jpg"
+  }
+},
+{
+  "model": "main.placeimage",
+  "pk": 4,
+  "fields": {
+    "place": 1,
+    "image": "places/스크린샷_2026-05-19_오후_5.31.17.png"
   }
 },
 {
