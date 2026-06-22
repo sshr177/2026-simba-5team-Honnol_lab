@@ -38,7 +38,6 @@ def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
 
 class Place(models.Model):
-    images = models.ImageField(upload_to='places/', blank=True)
     name = models.CharField(max_length=100)
     recommended_level = models.IntegerField(default=1)
     category = models.CharField(max_length=30)
@@ -56,9 +55,21 @@ class Place(models.Model):
     latitude = models.FloatField(null=True, blank=True)
     longitude = models.FloatField(null=True, blank=True)
     kakao_id = models.CharField(max_length=50, blank=True)
+
+    def thumbnail(self):
+        first = self.images.first()
+        if first:
+            return first.image.url
+        return None
+
     def __str__(self):
         return self.name
 
+class PlaceImage(models.Model):
+    place = models.ForeignKey(Place,related_name='images', on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='places/')
+    def __str__(self):
+        return f"{self.place.name} 사진"
 
 class Tag(models.Model):
     name = models.CharField(max_length=30)

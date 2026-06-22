@@ -14,4 +14,5 @@ urlpatterns = [
     path('lastpage/', views.lastpage, name='lastpage'),
     path('place/<int:place_id>/like/', views.place_like, name="place_like"),
     path('review/<int:review_id>/delete/', views.review_delete, name='review_delete'),
+    path('place/create/', views.create_place, name='create_place')
 ]

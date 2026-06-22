@@ -32,7 +32,7 @@ def main(request):
         'places': places,
         'places_data': places_data,
         'active_nav': 'main'
-    })
+    }) 
 
 def login(request):
     if request.method == 'POST':
@@ -195,3 +195,23 @@ def place_like(request, place_id):
     return redirect('placeinfo', place_id=place.id)
 
 
+def create_place(request):
+    if not request.user.is_authenticated:
+        return redirect('start')
+    if request.method == 'POST':
+        lat = request.POST.get('latitude')
+        lng = request.POST.get('longitude')
+        place, created = Place.objects.get_or_create(
+            kakao_id = request.POST.get('kakao_id'),
+            defaults={
+                'name': request.POST.get('name', ''),
+                'address': request.POST.get('address', ''),
+                'category': request.POST.get('category', ''),
+                'tel': request.POST.get('phone', ''),
+                'latitude': float(lat) if lat else None,
+                'longitude': float(lng) if lng else None,
+            }
+
+        )
+        return redirect('placeinfo', place_id=place.id)
+    return redirect('main')

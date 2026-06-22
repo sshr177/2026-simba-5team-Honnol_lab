@@ -3,10 +3,9 @@
   "model": "main.place",
   "pk": 1,
   "fields": {
-    "images": "places/스크린샷_2026-05-11_오후_11.26.41.png",
     "name": "어글리 베이컨 연남점",
     "recommended_level": 1,
-    "category": "조용함",
+    "category": "카페",
     "address": "서울 마포구 성미산로 161-1 1층",
     "descirptions": "",
     "opening_hours": "",
@@ -18,9 +17,17 @@
     "has_partition": false,
     "parking_available": false,
     "created_at": "2026-06-22T17:36:01.712Z",
-    "latitude": 0.0,
-    "longitude": null,
+    "latitude": 37.5636,
+    "longitude": 126.9250,
     "kakao_id": ""
+  }
+},
+{
+  "model": "main.placeimage",
+  "pk": 1,
+  "fields": {
+    "place": 1,
+    "image": "places/스크린샷_2026-05-11_오후_11_L6v6GTm.26.41.png"
   }
 },
 {
