@@ -14,10 +14,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const sideProgressFill = document.getElementById("side-progress-fill");
 
     const nextButton = document.getElementById("next-question-button");
-    const resultButton = document.getElementById("result-button");
+    const scoreInput = document.getElementById("test-score-input");
 
     const questionStatusItems = document.querySelectorAll(".question-status");
-    resultButton.style.display = "none";
 
     function updateProgress () {
         const currentNumber = currentQuestionIndex + 1;
@@ -87,7 +86,27 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         });
     });
+    const scoreForm = document.getElementById("test-score-form");
 
+    scoreForm.addEventListener("submit", function (event) {
+        const checkedAnswers =
+            document.querySelectorAll(".answer-radio:checked");
+
+        if (checkedAnswers.length !== totalQuestions) {
+            event.preventDefault();
+            alert("모든 질문에 답해주세요.");
+            return;
+        }
+
+        const finalScore = Array.from(checkedAnswers).reduce(
+            function (sum, radio) {
+                return sum + Number(radio.dataset.score);
+            },
+            0
+        );
+
+        scoreInput.value = finalScore;
+    });
     nextButton.addEventListener("click", function () {
         if (selectedScore === null) {
             alert("답변을 선택해주세요.");
@@ -103,13 +122,8 @@ document.addEventListener("DOMContentLoaded", function () {
             showQuestion(currentQuestionIndex);
         } else {
             localStorage.setItem("honnolTestScore", totalScore);
-
-            nextButton.style.display = "none";
-            resultButton.style.display = "inline-flex";
-
-            questionStatusItems.forEach(function (statusItem) {
-                statusItem.classList.remove("question-status--active");
-            });
+            scoreInput.value = totalScore;
+            scoreForm.requestSubmit();
         }
     });
 
