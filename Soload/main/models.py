@@ -54,7 +54,7 @@ class Place(models.Model):
     parking_available = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     latitude = models.FloatField(null=True, blank=True)
-    longtitude = models.FloatField(null=True, blank=True)
+    longitude = models.FloatField(null=True, blank=True)
     kakao_id = models.CharField(max_length=50, blank=True)
     def __str__(self):
         return self.name
