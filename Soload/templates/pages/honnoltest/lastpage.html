@@ -6,14 +6,14 @@
     <section class="result-card">
         <div class="result-text-box">
             <div class="result-title">
-                당신의 레벨은<br>
-                <div class="result-profile">{{user_profile.level}} {{user_profile.level_name}}</div><br>
-                입니다
+                <span>당신의 레벨은</span>
+                <span class="result-profile">Lv.{{user_profile.level}} {{user_profile.level_name}}</span>
+                <span>입니다</span>
             </div>
         </div>
 
         <div class="result-character-box">
-            <img src="{{ user_profile.character_image }}" alt="{{ user_profile.level_name }}" class="result-charcter-image">
+            <img src="{{ user_profile.character_image }}" alt="{{ user_profile.level_name }}" class="result-character-image">
         </div>
 
         <a href="{% url 'main' %}" class="soload-start-button">

@@ -71,7 +71,7 @@
                 </div>
 
                 <div class="review-list">
-                    {% for review in reviews %}
+                    {% for review in reviews|slice:":3" %}
                         <article class="review-item">
                             <div class="review-user">
                                 {{ review.writer.profile.nickname }}
@@ -93,7 +93,14 @@
                         </div>
                     </article>
                     {% empty %}
-                        <p class="brown-light-l">등록된 후기가 없습니다.</p>
+                        <article class="review-item review-item--empty brown-light-l">
+                            등록된 후기가 없습니다.
+                        </article>
+
+                        <article class="review-item layout-placeholder"></article>
+                        <article class="review-item layout-placeholder"></article>
+                        <article class="review-item layout-placeholder"></article>
+                        <article class="review-item layout-placeholder"></article>
                     {% endfor %}
                 </div>
 
@@ -140,10 +147,9 @@
 
             <section class="place-map-card">
                 <div>위치</div>
-
-                <div class="place-map-box">
-                    <span class="place-map-pin">⌖</span>
-                </div>
+                    <div class="map-pin_box">
+                        <span class="place-map-pin">⌖</span>
+                    </div>
             </section>
 
             <section class="placeinfo-right">
@@ -187,7 +193,13 @@
                             </div>
                         </div>
                     {% empty %}
-                        <p class="brown-light-l">태그 통계가 없습니다.</p>
+                        <div class="stat-row stat-row--empty">
+                            <span class="brown-light-l">태그 통계가 없습니다.</span>
+                        </div>
+
+                        <div class="stat-row layout-placeholder"></div>
+                        <div class="stat-row layout-placeholder"></div>
+                        <div class="stat-row layout-placeholder"></div>
                     {% endfor %}
                 </section>
 
@@ -206,7 +218,13 @@
                             </div>
                         </div>
                     {% empty %}
-                        <p class="brown-light-l">방문 시간 통계가 없습니다.</p>
+                        <div class="stat-row stat-row--empty">
+                            <span class="brown-light-l">시간대 통계가 없습니다.</span>
+                        </div>
+
+                        <div class="stat-row layout-placeholder"></div>
+                        <div class="stat-row layout-placeholder"></div>
+                        <div class="stat-row layout-placeholder"></div>
                     {% endfor %}
                 </section>
 
@@ -290,5 +308,5 @@
     </div>
 </main>
 
-<script src="{% static 'js/placeinfo.js' %}"></script>
+<script src="{% static 'js/testpage.js' %}?v=2"></script>
 {% endblock %}

@@ -380,9 +380,10 @@
                 다음 질문
             </button>
 
-            <a href="{% url 'lastpage' %}" class="result-button" id="result-button">
-                레벨 확인하기
-            </a>
+            <form id="test-score-form" method="post" action="{% url 'testpage' %}">
+                {% csrf_token %}
+                <input type="hidden" name="score" id="test-score-input">
+            </form>
         </div>
     </section>
 
@@ -414,5 +415,5 @@
     </aside>
 </main>
 
-<script src="{% static 'js/testpage.js' %}"></script>
+<script src="{% static 'js/testpage.js' %}?v=3"></script>
 {% endblock %}
