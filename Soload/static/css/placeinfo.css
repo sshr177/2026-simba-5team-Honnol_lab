@@ -610,7 +610,8 @@ button{
 .help-modal-content{
     width: 560px;
     max-width: 90vw;
-    min-height: 420px;
+    height: 600px;
+    max-height: 80vh;
 
     padding: 40px;
 
@@ -642,14 +643,18 @@ button{
 .help-list{
     margin: 0;
     padding-left: 24px;
+    padding-right: 8px;
 
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 14px;
 
     color: var(--darker, #713F12);
     font-size: 18px;
-    line-height: 1.8;
+    line-height: 1.7;
+
+    flex: 1;
+    overflow-y: auto;
 }
 
 .help-list li{
@@ -668,7 +673,7 @@ button{
     width: 120px;
     height: 48px;
 
-    margin-top: auto;
+    margin-top: 24px;
     align-self: center;
 
     border: none;
@@ -693,3 +698,4 @@ button{
 .help-close-button:active{
     transform: scale(0.97);
 }
+
