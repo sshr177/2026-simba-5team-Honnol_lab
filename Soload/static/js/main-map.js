@@ -18,6 +18,27 @@ document.addEventListener("DOMContentLoaded", function () {
     const resultList = document.getElementById("search-result-list");
 
     const placesService = new kakao.maps.services.Places();
+    const placesDataElement = document.getElementById("places-data");
+
+    if (placesDataElement) {
+        const savedPlaces = JSON.parse(placesDataElement.textContent);
+
+        savedPlaces.forEach(function (place) {
+            const position = new kakao.maps.LatLng(
+                Number(place.lat),
+                Number(place.lng)
+            );
+
+            const marker = new kakao.maps.Marker({
+                map: map,
+                position: position
+            });
+
+            kakao.maps.event.addListener(marker, "click", function () {
+                window.location.href = `/placeinfo/${place.id}/`;
+            });
+        });
+    }
 
     function renderSearchResults(results) {
         if (!resultList) {
