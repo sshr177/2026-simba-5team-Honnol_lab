@@ -268,7 +268,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const selectedTips = selectedHelp.levels[level];
 
         helpTitle.textContent = selectedHelp.title;
-        helpSubtitle.textContent = 'LV.{{ place.level }} 단계에 맞는 혼놀 도움말이에요.';
+        helpSubtitle.textContent = 'LV.{{ place.recommended_level }} 단계에 맞는 혼놀 도움말이에요.';
 
         helpList.innerHTML = "";
 

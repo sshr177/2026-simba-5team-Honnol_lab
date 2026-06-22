@@ -37,7 +37,7 @@
 
             <section class="place-summary">
                 <div class="place-title">
-                    {{ place.name }} (Lv.{{ place.level }} 추천)
+                    {{ place.name }} (Lv.{{ place.recommended_level }} 추천)
                 </div>
 
                 <div class="place-rating">
@@ -271,7 +271,7 @@
                             레벨을 높여보세요!
                         </p>
 
-                        <a href="{% url 'createreview' %}" class="review-write-button">
+                        <a href="{% url 'createreview' place.id %}" class="review-write-button">
                             후기 작성하기 🐣
                         </a>
                     </div>

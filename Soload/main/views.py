@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
-from .models import Profile, Place
-# Create your views here.
+from .models import Profile, Place, Tag, VisitTime, Purpose, Review,PlaceLike
+from django.db.models import Avg, Count
+
+# Create your views
 def main(request):
     if not request.user.is_authenticated: 
         return redirect('start')
@@ -33,21 +35,23 @@ def login(request):
 
 def signup(request):
     if request.method == 'POST':
-        email = request.POST.get('email')
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+        if request.POST['password'] == request.POST['confirm']:
+            
+            user = User.objects.create_user(
+                email = request.POST['email'],
+                username = request.POST['username'],
+                password = request.POST['password'],
+            )
 
-        user = User.objects.create_user(
-            username = username,
-            email = email,
-            password = password
-        )
+            profile = user.profile
+            profile.nickname = request.POST['username']
+            profile.save()
+            
+            auth_login(request, user)
 
-        Profile.objects.create(user=user, nickname=username)
-
-        auth_login(request, user)
-
-        return redirect('testpage')
+            return redirect('testpage')
+        else:
+            return render(request, 'pages/signup.html', {'error': '비밀전호가 일치하지 않습니다.'})
     
     return render(request, 'pages/signup.html')
 
@@ -57,20 +61,92 @@ def logout(request):
 
 def placeinfo(request, place_id):
     place = get_object_or_404(Place, pk=place_id)
-    return render(request, 'pages/placeinfo.html', {'place': place})
+    reviews = place.reviews.all()
+    avg_rating = place.reviews.aggregate(avg_rating=Avg("rating"))["avg_rating"]
+    top_tags = Tag.objects.filter(reviews__place = place).annotate(
+        review_count=Count("reviews")).order_by("-review_count")[:3]
+    top_visit_times = VisitTime.objects.filter(reviews__place=place).annotate(
+        review_count=Count("reviews")).order_by("-review_count")[:3]
 
-def createreview(request):
-    return render(request, 'pages/createreview.html')
+    return render(request, 'pages/placeinfo.html', {
+        'place': place,
+        'reviews': reviews,
+        'review_count': reviews.count(),
+        'avg_rating': avg_rating,
+        'top_tags': top_tags,
+        'top_visit_times': top_visit_times,
+        'nunchi_low': reviews.filter(nunchi_score=1).count(),
+        'nunchi_mid': reviews.filter(nunchi_score=2).count(),
+        'nunchi_high': reviews.filter(nunchi_score=3).count(),
+        })
+
+def createreview(request, place_id):
+    if not request.user.is_authenticated:
+        return redirect('start')
+    place = get_object_or_404(Place, pk=place_id)
+    if request.method == 'POST':
+        if not request.user.is_authenticated:
+            return redirect('start')
+        review = Review.objects.create(
+            place=place, writer=request.user,
+            nunchi_score=int(request.POST.get('nunchi_score', 1)),
+            rating = float(request.POST.get('rating', 5)),
+            recommended_level = int(request.POST.get('recommended_level', 1)),
+            has_kiosk=request.POST.get('has_kiosk') == 'on',
+            has_single_seat=request.POST.get('has_single_seat') == 'on',
+            has_con=request.POST.get('has_con') == 'on',
+            has_wifi=request.POST.get('has_wifi') == 'on',
+            content=request.POST.get('content'),
+        )
+        for tid in request.POST.getlist('tags'):
+            review.tags.add(get_object_or_404(Tag, pk=tid))
+
+        for vid in request.POST.getlist('visit_times'):
+            review.visit_times.add(get_object_or_404(VisitTime, pk=vid))
+
+        for pid in request.POST.getlist('purposes'):
+            review.purposes.add(get_object_or_404(Purpose, pk=pid))
+
+        p = request.user.profile
+        p.exp += 50 #리뷰작성시 들어오는 경험치
+        if p.exp >= p.required_exp() and p.level < 5:
+            p.exp -= p.required_exp()
+            p.level +=1
+        p.save()
+        return redirect('placeinfo', place_id=place.id)
+    return render(request, 'pages/createreview.html', 
+        {
+        'place': place,
+        'tags': Tag.objects.all(),
+        'visit_times': VisitTime.objects.all(),
+        'purposes': Purpose.objects.all(),
+        }
+        )
+
+def review_delete(request, review_id):
+    review = get_object_or_404(Review, pk=review.id)
+    if review.writer != request.user:
+        return redirect('main')
+    review.delete
+    return redirect('mypage')
 
 def mypage(request):
+    if not request.user.is_authenticated:
+        return redirect('start')
+    likes = PlaceLike.objects.filter(user=request.user)
+    my_reviews = Review.objects.filter(writer=request.user)
     return render(request, 'pages/mypage.html', {
-        'active_nav': 'mypage'
+        'likes': likes,
+        'my_reviews': my_reviews,
+        'active_nav': 'mypage',
     })
 
 def start(request):
     return render(request, 'pages/start.html')
 
 def testpage(request):
+    if not request.user.is_authenticated:
+        return redirect('start')
     if request.method == 'POST':
         score = int(request.POST.get('score', 0))
         p = request.user.profile
@@ -81,10 +157,21 @@ def testpage(request):
     return render(request, 'pages/honnoltest/testpage.html')
 
 def lastpage(request):
+    if not request.user.is_authenticated:
+        return redirect('start')
     return render(request, 'pages/honnoltest/lastpage.html')
 
 def score_to_level(score):
     if score <= 17: return 1
     elif score <= 33: return 2
     else: return 3
+
+def place_like(request, place_id):
+    if not request.user.is_authenticated:
+        return redirect('start')
+    like, created = PlaceLike.objects.get_or_create(user=request.user, place=place)
+    if not created:
+        like.delete()
+    return redirect('placeinfo', place_id=place.id)
+
 

@@ -13,7 +13,7 @@
 
         <div class = "mypage_level-info">
             <span class = "mypage_level-title brown-dark-xl">
-                나의 레벨 : {{ user_profile.level_name}} (LV.{{ user_profile.lever }})
+                나의 레벨 : {{ user_profile.level_name}} (LV.{{ user_profile.level }})
             </span>
 
             <span class = "mypage_level-discription brown-light-m">
@@ -83,7 +83,7 @@
             </div>
 
             <div class="saved-place-card-list">
-                <a href="{% url 'placeinfo' %}" class="saved-place-card">
+                <a href="{% url 'placeinfo' 1 %}" class="saved-place-card">
                     <span class="saved-place-tag">Lv.3 추천</span>
                     <div class="saved-place-image">사진</div>
 
@@ -93,7 +93,7 @@
                     </div>
                 </a>
 
-                <a href="{% url 'placeinfo' %}" class="saved-place-card">
+                <a href="{% url 'placeinfo' 1 %}" class="saved-place-card">
                     <span class="saved-place-tag">Lv.3 추천</span>
                     <div class="saved-place-image">사진</div>
 
@@ -103,7 +103,7 @@
                     </div>
                 </a>
 
-                <a href="{% url 'placeinfo' %}" class="saved-place-card">
+                <a href="{% url 'placeinfo' 1 %}" class="saved-place-card">
                     <span class="saved-place-tag">Lv.3 추천</span>
                     <div class="saved-place-image">사진</div>
 
@@ -128,7 +128,7 @@
             </div>
 
             <div class="review-collection-list">
-                <a href="{% url 'placeinfo' %}" class="review-collection-item">
+                <a href="{% url 'placeinfo' 1 %}" class="review-collection-item">
                     <span class="review-place-name">
                         어글리 베이커리 연남점
                     </span>
@@ -138,7 +138,7 @@
                     </span>
                 </a>
 
-                <a href="{% url 'placeinfo' %}" class="review-collection-item">
+                <a href="{% url 'placeinfo' 1 %}" class="review-collection-item">
                     <span class="review-place-name">
                         어글리 베이커리 연남점
                     </span>
@@ -148,7 +148,7 @@
                     </span>
                 </a>
 
-                <a href="{% url 'placeinfo' %}" class="review-collection-item">
+                <a href="{% url 'placeinfo' 1 %}" class="review-collection-item">
                     <span class="review-place-name">
                         어글리 베이커리 연남점
                     </span>

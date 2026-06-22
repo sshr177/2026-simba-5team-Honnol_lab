@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 
 # Create your models here.
 
@@ -26,6 +28,14 @@ class Profile(models.Model):
         return f"{self.user.username} (Lv.{self.level})"
 
 
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()
 
 class Place(models.Model):
     images = models.ImageField(upload_to='places/', blank=True)
@@ -45,3 +55,45 @@ class Place(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.name
+
+
+class Tag(models.Model):
+    name = models.CharField(max_length=30)
+    def __str__(self):
+        return self.name
+    
+class VisitTime(models.Model):
+    name = models.CharField(max_length=30)
+    def __str__(self):
+        return self.name
+
+class Purpose(models.Model):
+    name = models.CharField(max_length=30)
+    def __str__(self):
+        return self.name
+
+class Review(models.Model):
+    place = models.ForeignKey(Place, related_name='reviews', on_delete=models.CASCADE)
+    writer = models.ForeignKey(User, on_delete=models.CASCADE)
+    nunchi_score = models.IntegerField(default=1)
+    rating = models.FloatField(default=5.0)
+    recommended_level = models.IntegerField(default=1)
+    has_wifi = models.BooleanField(default=False)
+    has_con = models.BooleanField(default=False)
+    has_kiosk = models.BooleanField(default=False)
+    has_single_seat = models.BooleanField(default=False)
+    content = models.TextField()
+    tags = models.ManyToManyField(Tag, related_name='reviews', blank=True)
+    visit_times = models.ManyToManyField(VisitTime, related_name='reviews', blank=True)
+    purposes = models.ManyToManyField(Purpose, related_name='reviews', blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return f"{self.place.name} - {self.writer.profile.nickname}"
+
+
+class PlaceLike(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    place = models.ForeignKey(Place, related_name='likes', on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    class Meta:
+        unique_together = ('user', 'place')
