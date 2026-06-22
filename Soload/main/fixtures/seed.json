@@ -1,0 +1,299 @@
+[
+{
+  "model": "main.place",
+  "pk": 1,
+  "fields": {
+    "images": "places/스크린샷_2026-05-11_오후_11.26.41.png",
+    "name": "어글리 베이컨 연남점",
+    "recommended_level": 1,
+    "category": "조용함",
+    "address": "서울 마포구 성미산로 161-1 1층",
+    "descirptions": "",
+    "opening_hours": "",
+    "tel": "",
+    "has_wifi": false,
+    "has_con": false,
+    "has_kiosk": false,
+    "has_single_seat": false,
+    "has_partition": false,
+    "parking_available": false,
+    "created_at": "2026-06-22T17:36:01.712Z",
+    "latitude": 0.0,
+    "longitude": null,
+    "kakao_id": ""
+  }
+},
+{
+  "model": "main.tag",
+  "pk": 1,
+  "fields": {
+    "name": "조용함"
+  }
+},
+{
+  "model": "main.tag",
+  "pk": 2,
+  "fields": {
+    "name": "시끄러움"
+  }
+},
+{
+  "model": "main.tag",
+  "pk": 3,
+  "fields": {
+    "name": "분위기좋음"
+  }
+},
+{
+  "model": "main.tag",
+  "pk": 4,
+  "fields": {
+    "name": "깔끔함"
+  }
+},
+{
+  "model": "main.tag",
+  "pk": 5,
+  "fields": {
+    "name": "넓은공간"
+  }
+},
+{
+  "model": "main.tag",
+  "pk": 6,
+  "fields": {
+    "name": "혼자공부하기좋음"
+  }
+},
+{
+  "model": "main.tag",
+  "pk": 8,
+  "fields": {
+    "name": "주차가능"
+  }
+},
+{
+  "model": "main.tag",
+  "pk": 9,
+  "fields": {
+    "name": "뷰좋음"
+  }
+},
+{
+  "model": "main.tag",
+  "pk": 10,
+  "fields": {
+    "name": "사람많음"
+  }
+},
+{
+  "model": "main.tag",
+  "pk": 11,
+  "fields": {
+    "name": "테이블넓음"
+  }
+},
+{
+  "model": "main.tag",
+  "pk": 12,
+  "fields": {
+    "name": "와이파이빵빵"
+  }
+},
+{
+  "model": "main.tag",
+  "pk": 13,
+  "fields": {
+    "name": "인테리어예쁨"
+  }
+},
+{
+  "model": "main.tag",
+  "pk": 14,
+  "fields": {
+    "name": "가성비좋음"
+  }
+},
+{
+  "model": "main.tag",
+  "pk": 15,
+  "fields": {
+    "name": "반려동물가능"
+  }
+},
+{
+  "model": "main.tag",
+  "pk": 16,
+  "fields": {
+    "name": "구경하기좋음"
+  }
+},
+{
+  "model": "main.tag",
+  "pk": 17,
+  "fields": {
+    "name": "혼자온사람많음"
+  }
+},
+{
+  "model": "main.visittime",
+  "pk": 1,
+  "fields": {
+    "name": "9:00-:1000"
+  }
+},
+{
+  "model": "main.visittime",
+  "pk": 2,
+  "fields": {
+    "name": "10:00-11:00"
+  }
+},
+{
+  "model": "main.visittime",
+  "pk": 3,
+  "fields": {
+    "name": "11:00-12:00"
+  }
+},
+{
+  "model": "main.visittime",
+  "pk": 4,
+  "fields": {
+    "name": "12:00-13:00"
+  }
+},
+{
+  "model": "main.visittime",
+  "pk": 5,
+  "fields": {
+    "name": "13:00-14:00"
+  }
+},
+{
+  "model": "main.visittime",
+  "pk": 6,
+  "fields": {
+    "name": "14:00-15:00"
+  }
+},
+{
+  "model": "main.visittime",
+  "pk": 7,
+  "fields": {
+    "name": "15:00-16:00"
+  }
+},
+{
+  "model": "main.visittime",
+  "pk": 8,
+  "fields": {
+    "name": "16:00-17:00"
+  }
+},
+{
+  "model": "main.visittime",
+  "pk": 9,
+  "fields": {
+    "name": "17:00-18:00"
+  }
+},
+{
+  "model": "main.visittime",
+  "pk": 10,
+  "fields": {
+    "name": "18:00-19:00"
+  }
+},
+{
+  "model": "main.visittime",
+  "pk": 11,
+  "fields": {
+    "name": "19:00-20:00"
+  }
+},
+{
+  "model": "main.visittime",
+  "pk": 12,
+  "fields": {
+    "name": "20:00 이후"
+  }
+},
+{
+  "model": "main.purpose",
+  "pk": 1,
+  "fields": {
+    "name": "공부"
+  }
+},
+{
+  "model": "main.purpose",
+  "pk": 2,
+  "fields": {
+    "name": "과제"
+  }
+},
+{
+  "model": "main.purpose",
+  "pk": 3,
+  "fields": {
+    "name": "독서"
+  }
+},
+{
+  "model": "main.purpose",
+  "pk": 4,
+  "fields": {
+    "name": "혼밥"
+  }
+},
+{
+  "model": "main.purpose",
+  "pk": 5,
+  "fields": {
+    "name": "데이트"
+  }
+},
+{
+  "model": "main.purpose",
+  "pk": 6,
+  "fields": {
+    "name": "구경"
+  }
+},
+{
+  "model": "main.purpose",
+  "pk": 7,
+  "fields": {
+    "name": "작업"
+  }
+},
+{
+  "model": "main.purpose",
+  "pk": 8,
+  "fields": {
+    "name": "휴식"
+  }
+},
+{
+  "model": "main.purpose",
+  "pk": 9,
+  "fields": {
+    "name": "대기"
+  }
+},
+{
+  "model": "main.purpose",
+  "pk": 10,
+  "fields": {
+    "name": "모임 전"
+  }
+},
+{
+  "model": "main.purpose",
+  "pk": 11,
+  "fields": {
+    "name": "기타"
+  }
+}
+]

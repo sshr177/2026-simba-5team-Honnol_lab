@@ -56,15 +56,19 @@
 
     <section class="map-section">
         <div class="map-section_search">
-            <input type="text" placeholder="장소를 입력하세요">
-            <button type="button">🔍</button>
+            <input type="text" id="place-search-input" placeholder="장소를 입력하세요">
+            <button type="button" id="place-search-button">🔍</button>
         </div>
+
+        <div class="search-result-list" id="search-result-list"></div>
 
         <div class="map-section_map" id="map"></div>
     </section>
 
+    {{ places_data|json_script:"places-data" }}
+
 </main>
 
-<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0eb280ffaedbceff3e438e6a20bc4fc3"></script>
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0eb280ffaedbceff3e438e6a20bc4fc3&libraries=services"></script>
 <script src="{% static 'js/main-map.js' %}"></script>
 {% endblock %}
