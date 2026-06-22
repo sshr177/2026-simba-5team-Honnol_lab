@@ -23,7 +23,7 @@
             </div>
 
             <div class="level-section_progress">
-                <div class="level-section_progress-fill"></div>
+                <div class="level-section_progress-fill" style="width: {% if user_profile.level >= 5 %}100{% else %}{% widthratio user_profile.exp user_profile.required_exp 100 %}{% endif %}%;"></div>
             </div>
         </div>
     </section>
