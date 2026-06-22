@@ -93,7 +93,7 @@
                         </div>
                     </article>
                     {% empty %}
-                        <p>등록된 후기가 없습니다.</p>
+                        <p class="brown-light-l">등록된 후기가 없습니다.</p>
                     {% endfor %}
                 </div>
 
@@ -149,25 +149,27 @@
             <section class="placeinfo-right">
                 <section class="stats-section">
                     <div>눈치지수</div>
-
+                        {% widthratio nunchi_low review_count 100 as low_percent %}
+                        {% widthratio nunchi_mid review_count 100 as mid_percent %}
+                        {% widthratio nunchi_high review_count 100 as high_percent %}
                     <div class="stat-row">
                         <span>낮음 ({{ nunchi_low }})</span>
                         <div class="stat-bar">
-                            <div class="stat-bar-fill stat-bar-fill--high"></div>
+                            <div class="stat-bar-fill" style="width: {{ low_percent }}%;"></div>
                         </div>
                     </div>
 
                     <div class="stat-row">
                         <span>보통 ({{ nunchi_mid }})</span>
                         <div class="stat-bar">
-                            <div class="stat-bar-fill stat-bar-fill--medium"></div>
+                            <div class="stat-bar-fill" style="width: {{ mid_percent }}%;"></div>
                         </div>
                     </div>
 
                     <div class="stat-row">
                         <span>높음 ({{ nunchi_high }})</span>
                         <div class="stat-bar">
-                            <div class="stat-bar-fill stat-bar-fill--low"></div>
+                            <div class="stat-bar-fill" style="width: {{ high_percent }}%;"></div>
                         </div>
                     </div>
                 </section>
