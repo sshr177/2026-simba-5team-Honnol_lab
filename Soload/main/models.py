@@ -43,7 +43,7 @@ class Place(models.Model):
     recommended_level = models.IntegerField(default=1)
     category = models.CharField(max_length=30)
     address = models.CharField(max_length=200)
-    descirption = models.TextField(blank=True)
+    descirptions = models.TextField(blank=True)
     opening_hours = models.CharField(max_length=100, blank=True)
     tel = models.CharField(max_length=20, blank=True)
     has_wifi = models.BooleanField(default=False)
@@ -53,6 +53,9 @@ class Place(models.Model):
     has_partition = models.BooleanField(default=False)
     parking_available = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
+    latitude = models.FloatField(null=True, blank=True)
+    longtitude = models.FloatField(null=True, blank=True)
+    kakao_id = models.CharField(max_length=50, blank=True)
     def __str__(self):
         return self.name
 
