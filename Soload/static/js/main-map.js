@@ -20,6 +20,20 @@ document.addEventListener("DOMContentLoaded", function () {
     const placesService = new kakao.maps.services.Places();
     const placesDataElement = document.getElementById("places-data");
 
+    function getCSRFToken() {
+        const cookie = document.cookie
+            .split("; ")
+            .find(function (row) {
+                return row.startsWith("csrftoken=");
+            });
+
+        if (!cookie) {
+            return "";
+        }
+
+        return cookie.split("=")[1];
+    }
+
     if (placesDataElement) {
         const savedPlaces = JSON.parse(placesDataElement.textContent);
 
@@ -68,16 +82,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 map.setCenter(position);
 
-                const marker = new kakao.maps.Marker({
+                new kakao.maps.Marker({
                     map: map,
                     position: position
                 });
-
-                const confirmAdd = confirm(`${place.place_name}을(를) 추가할까요?`);
-
-                if (!confirmAdd) {
-                    return;
-                }
 
                 const placeData = {
                     kakao_id: place.id,
@@ -90,15 +98,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 };
 
                 console.log("백엔드로 보낼 장소:", placeData);
-                sendPlaceToBackend(placeData);
-
+                sendPlaceToBackend(placeData, false);
             });
 
             resultList.appendChild(item);
         });
     }
 
-    function sendPlaceToBackend(placeData) {
+    function sendPlaceToBackend(placeData, confirmed) {
         const formData = new FormData();
 
         formData.append("kakao_id", placeData.kakao_id);
@@ -108,6 +115,10 @@ document.addEventListener("DOMContentLoaded", function () {
         formData.append("longitude", placeData.longitude);
         formData.append("category", placeData.category);
         formData.append("phone", placeData.phone);
+
+        if (confirmed) {
+            formData.append("confirm", "yes");
+        }
 
         fetch("/place/create-or-get/", {
             method: "POST",
@@ -135,25 +146,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
             console.log("백엔드 응답:", data);
 
-            window.location.href = `/placeinfo/${data.place_id}/`;
+            if (data.exists === false) {
+                const confirmAdd = confirm(`${placeData.name}을(를) 추가할까요?`);
+
+                if (!confirmAdd) {
+                    return;
+                }
+
+                sendPlaceToBackend(placeData, true);
+            }
         })
         .catch(function (error) {
             console.error("장소 저장 중 오류:", error);
         });
-    }
-
-    function getCSRFToken() {
-        const cookie = document.cookie
-            .split("; ")
-            .find(function (row) {
-                return row.startsWith("csrftoken=");
-            });
-
-        if (!cookie) {
-            return "";
-        }
-
-        return cookie.split("=")[1];
     }
 
     if (!searchInput || !searchButton) {
@@ -183,47 +188,47 @@ document.addEventListener("DOMContentLoaded", function () {
             renderSearchResults(data);
         });
     });
-});
 
-const likeButtons = document.querySelectorAll(".place-card_like");
+    const likeButtons = document.querySelectorAll(".place-card_like");
 
-likeButtons.forEach(function (button) {
-    button.addEventListener("click", function (event) {
-        event.preventDefault();
-        event.stopPropagation();
+    likeButtons.forEach(function (button) {
+        button.addEventListener("click", function (event) {
+            event.preventDefault();
+            event.stopPropagation();
 
-        const placeId = button.dataset.placeId;
+            const placeId = button.dataset.placeId;
 
-        fetch(`/place/${placeId}/like/`, {
-            method: "POST",
-            headers: {
-                "X-CSRFToken": getCSRFToken()
-            }
-        })
-        .then(function (response) {
-            if (!response.ok) {
-                throw new Error("찜 요청 실패");
-            }
+            fetch(`/place/${placeId}/like/`, {
+                method: "POST",
+                headers: {
+                    "X-CSRFToken": getCSRFToken()
+                }
+            })
+            .then(function (response) {
+                if (!response.ok) {
+                    throw new Error("찜 요청 실패");
+                }
 
-            return response.json();
-        })
-        .then(function (data) {
-            if (!data.success) {
-                return;
-            }
+                return response.json();
+            })
+            .then(function (data) {
+                if (!data.success) {
+                    return;
+                }
 
-            if (data.liked) {
-                button.textContent = "♥";
-                button.dataset.liked = "true";
-                button.classList.add("place-card_like--active");
-            } else {
-                button.textContent = "♡";
-                button.dataset.liked = "false";
-                button.classList.remove("place-card_like--active");
-            }
-        })
-        .catch(function (error) {
-            console.error("찜 처리 중 오류:", error);
+                if (data.liked) {
+                    button.textContent = "♥";
+                    button.dataset.liked = "true";
+                    button.classList.add("place-card_like--active");
+                } else {
+                    button.textContent = "♡";
+                    button.dataset.liked = "false";
+                    button.classList.remove("place-card_like--active");
+                }
+            })
+            .catch(function (error) {
+                console.error("찜 처리 중 오류:", error);
+            });
         });
     });
 });
