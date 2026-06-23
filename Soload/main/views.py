@@ -12,8 +12,16 @@ def main(request):
         return redirect('start')
 
     user_profile = request.user.profile
-    level = user_profile.level
-    places = Place.objects.filter(recommended_level__gte=level-1, recommended_level__lte=level+1)
+
+    places = Place.objects.all()
+    category = request.GET.get('category')
+    level = request.GET.get('level')
+
+    if category:
+        places = places.filter(category=category)
+
+    if level:
+        places = places.filter(recommended_level=level)
 
     places_data = []
 
@@ -35,7 +43,9 @@ def main(request):
         'user_profile': user_profile,
         'places': places,
         'places_data': places_data,
-        'active_nav': 'main'
+        'active_nav': 'main',
+        'category': category,
+        'level': level,
     }) 
 
 def login(request):
