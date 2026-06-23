@@ -55,7 +55,7 @@
 .place-photo-box img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: none;
 }
 .place-photo-image {
     display: none;
@@ -127,9 +127,40 @@
 
 .place-title {
     margin-bottom: 8px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
     color: var(--darker, #713F12);
     font-size: 24px;
     font-weight: 700;
+}
+
+.placeinfo-like-button {
+    width: 40px;
+    height: 40px;
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    flex: 0 0 auto;
+
+    border: none;
+    border-radius: 50%;
+    background: #fff;
+
+    color: var(--darker, #713F12);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1;
+
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.14);
+}
+
+.placeinfo-like-button--active {
+    color: #ef4444;
 }
 
 .place-rating {

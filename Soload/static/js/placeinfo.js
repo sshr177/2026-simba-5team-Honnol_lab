@@ -440,6 +440,61 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+    function getCSRFToken() {
+        const cookie = document.cookie
+            .split("; ")
+            .find(function (row) {
+                return row.startsWith("csrftoken=");
+            });
+
+        if (!cookie) {
+            return "";
+        }
+
+        return cookie.split("=")[1];
+    }
+
+    const placeinfoLikeButton = document.querySelector(".placeinfo-like-button");
+
+    if (placeinfoLikeButton) {
+        placeinfoLikeButton.addEventListener("click", function () {
+            const placeId = placeinfoLikeButton.dataset.placeId;
+
+            fetch(`/place/${placeId}/like/`, {
+                method: "POST",
+                headers: {
+                    "X-CSRFToken": getCSRFToken()
+                }
+            })
+            .then(function (response) {
+                if (!response.ok) {
+                    throw new Error("찜 요청 실패");
+                }
+
+                return response.json();
+            })
+            .then(function (data) {
+                if (!data.success) {
+                    return;
+                }
+
+                if (data.liked) {
+                    placeinfoLikeButton.textContent = "♥";
+                    placeinfoLikeButton.dataset.liked = "true";
+                    placeinfoLikeButton.classList.add("placeinfo-like-button--active");
+                    return;
+                }
+
+                placeinfoLikeButton.textContent = "♡";
+                placeinfoLikeButton.dataset.liked = "false";
+                placeinfoLikeButton.classList.remove("placeinfo-like-button--active");
+            })
+            .catch(function (error) {
+                console.error("찜 처리 중 오류:", error);
+            });
+        });
+    }
+
     const reviewModal = document.getElementById("review-modal");
     const reviewModalClose = document.getElementById("review-modal-close");
     const reviewModalUser = document.getElementById("review-modal-user");
