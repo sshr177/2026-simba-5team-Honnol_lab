@@ -293,3 +293,13 @@ def get_place_group(category):
         return 'food'
     return 'culture'
 
+def user_profile(request, user_id):
+    profile_user = get_object_or_404(User, pk=user_id)
+    profile = profile_user.profile
+    user_reviews = Review.objects.filter(writer=profile_user)
+    
+    return render(request, 'pages/user_profile.html',{
+        'profile_user': profile_user,
+        'profile': profile,
+        'user_reviews': user_reviews,
+    })
