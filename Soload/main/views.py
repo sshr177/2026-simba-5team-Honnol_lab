@@ -116,6 +116,9 @@ def logout(request):
 def placeinfo(request, place_id):
     place = get_object_or_404(Place, pk=place_id)
     reviews = place.reviews.all()
+    is_liked = False
+    if request.user.is_authenticated:
+        is_liked = PlaceLike.objects.filter(user=request.user, place=place).exists()
     if request.user.is_authenticated and request.GET.get('same_level'):
         reviews = reviews.filter(writer__profile__level=request.user.profile.level)
     avg_rating = place.reviews.aggregate(avg_rating=Avg("rating"))["avg_rating"]
@@ -134,6 +137,7 @@ def placeinfo(request, place_id):
         'nunchi_low': place.reviews.filter(nunchi_score=1).count(),
         'nunchi_mid': place.reviews.filter(nunchi_score=2).count(),
         'nunchi_high': place.reviews.filter(nunchi_score=3).count(),
+        'is_liked': is_liked,
         })
 
 def createreview(request, place_id):

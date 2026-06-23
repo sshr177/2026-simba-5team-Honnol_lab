@@ -179,6 +179,7 @@
                 <div>장소 정보</div>
 
                 <dl class="place-detail-list">
+
                     <div>
                         <dt>콘센트</dt>
                         <dd>{% if place.has_con %}있음{% else %}없음{% endif %}</dd>
@@ -193,12 +194,16 @@
                         <dt>일인석</dt>
                         <dd>{% if place.has_single_seat %}있음{% else %}없음{% endif %}</dd>
                     </div>
-
-                    <div>
-                        <dt>주차</dt>
-                        <dd>{% if place.parking_available %}가능{% else %}불가{% endif %}</dd>
-                    </div>
                 </dl>
+                {% if place.kakao_id %}
+                <div class="place-kakao-link-row">
+                    <dd>
+                        <a href="https://place.map.kakao.com/{{ place.kakao_id }}" class="place-kakao-link-button" target="_blank" rel="noopener noreferrer">
+                            카카오맵에서 보기
+                        </a>
+                    </dd>
+                </div>
+                {% endif %}
             </section>
 
             <section class="place-map-card">
