@@ -687,3 +687,54 @@ button{
     transform: scale(0.97);
 }
 
+.place-map-box {
+    width: 100%;
+    height: 170px;
+    cursor: pointer;
+}
+
+.map-modal {
+    position: fixed;
+    inset: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.35);
+}
+
+.map-modal.active {
+    display: flex;
+}
+
+.map-modal-content {
+    width: 720px;
+    max-width: 90vw;
+    padding: 24px;
+    background: #fff;
+    box-sizing: border-box;
+}
+
+.map-modal-title {
+    margin-bottom: 16px;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.map-modal-map {
+    width: 100%;
+    height: 460px;
+}
+
+.map-modal-close {
+    float: right;
+    border: none;
+    background: #fff;
+    cursor: pointer;
+}
+
+.place-map-box {
+    width: 100%;
+    height: 170px;
+    cursor: pointer;
+}

@@ -402,7 +402,47 @@ document.addEventListener("DOMContentLoaded", function () {
             const detailMap = new kakao.maps.Map(detailMapContainer, {
                 center: position,
                 level: 3
-            }); 
+            });
+
+            const mapModal = document.getElementById("map-modal");
+            const mapModalClose = document.getElementById("map-modal-close");
+            const largeMapContainer = document.getElementById("place-large-map");
+
+            let largeMap = null;
+            if (mapModal && mapModalClose && largeMapContainer) {
+                detailMapContainer.addEventListener("click", function () {
+                    mapModal.classList.add("active");
+
+                    setTimeout(function () {
+                        if (!largeMap) {
+                            largeMap = new kakao.maps.Map(largeMapContainer, {
+                                center: position,
+                                level: 2
+                            });
+
+                            new kakao.maps.Marker({
+                                map: largeMap,
+                                position: position
+                            });
+                        }
+
+                        largeMap.relayout();
+                        largeMap.setCenter(position);
+                    }, 100);
+                });
+
+                mapModalClose.addEventListener("click", function () {
+                    mapModal.classList.remove("active");
+                });
+
+                mapModal.addEventListener("click", function (event) {
+                    if (event.target === mapModal) {
+                        mapModal.classList.remove("active");
+                    }
+                });
+            }
+
+
 
             const marker = new kakao.maps.Marker({
                 map: detailMap,
