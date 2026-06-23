@@ -28,7 +28,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const placesDataElement = document.getElementById("places-data");
     const placeOverlays = [];
     let searchPreviewMarker = null;
-    let currentLocationMarker = null;
 
     if (mapControl) {
         mapContainer.appendChild(mapControl);
@@ -335,15 +334,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     );
 
                     map.panTo(currentPosition);
-
-                    if (currentLocationMarker) {
-                        currentLocationMarker.setMap(null);
-                    }
-
-                    currentLocationMarker = new kakao.maps.Marker({
-                        map: map,
-                        position: currentPosition
-                    });
                 },
                 function () {
                     alert("현재 위치를 가져오지 못했습니다.");

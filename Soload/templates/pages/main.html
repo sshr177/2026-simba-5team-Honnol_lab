@@ -8,7 +8,7 @@
 
 <main class="mainpage">
 
-    <section class="level-section">
+    <a href="{% url 'mypage' %}" class="level-section">
         <div class="level-section-badge">
             <img src="{{ user_profile.character_image }}" alt="{{ user_profile.level_name}}" class="mainpage_character-image">
         </div>
@@ -25,7 +25,7 @@
                 <div class="level-section_progress-fill" style="width: {% if user_profile.level >= 5 %}100{% else %}{% widthratio user_profile.exp user_profile.required_exp 100 %}{% endif %}%;"></div>
             </div>
         </div>
-    </section>
+    </a>
 
     <section class="recommend-section">
         <span class="level-recommend-place">레벨에 따른 장소 추천</span>

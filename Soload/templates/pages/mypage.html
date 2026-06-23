@@ -132,15 +132,85 @@
 
             <div class="review-collection-list">
                 {% for review in my_reviews %}
-                    <a href="{% url 'placeinfo' review.place.id %}" class="review-collection-item">
-                    <span class="review-place-name">
-                        {{ review.place.name }}
-                    </span>
+                    <div class="review-collection-item">
+                        <button type="button" class="review-collection-link review-detail-open-button">
+                            <span class="review-place-name">
+                                {{ review.place.name }}
+                            </span>
 
-                    <span class="review-visit-date">
-                        작성일 : {{ review.created_at|date:"Y.m.d" }}
-                    </span>
-                </a>
+                            <span class="review-visit-date">
+                                작성일 : {{ review.created_at|date:"Y.m.d" }}
+                            </span>
+
+                            <span class="review-text">{{ review.content }}</span>
+
+                            <span class="review-meta">
+                                {% for tag in review.tags.all %}
+                                    #{{ tag.name }}
+                                {% empty %}
+                                    태그 없음
+                                {% endfor %}
+                            </span>
+
+                            <span class="review-detail-data">
+                                <dl class="review-detail-list">
+                                    <div>
+                                        <dt>방문 시간대</dt>
+                                        <dd>{% for visit_time in review.visit_times.all %}{{ visit_time.name }}{% if not forloop.last %}, {% endif %}{% empty %}선택 없음{% endfor %}</dd>
+                                    </div>
+                                    <div>
+                                        <dt>방문 목적</dt>
+                                        <dd>{% for purpose in review.purposes.all %}{{ purpose.name }}{% if not forloop.last %}, {% endif %}{% empty %}선택 없음{% endfor %}</dd>
+                                    </div>
+                                    <div>
+                                        <dt>눈치지수</dt>
+                                        <dd>{% if review.nunchi_score == 1 %}낮음{% elif review.nunchi_score == 2 %}보통{% else %}높음{% endif %}</dd>
+                                    </div>
+                                    <div>
+                                        <dt>태그</dt>
+                                        <dd>{% for tag in review.tags.all %}#{{ tag.name }}{% if not forloop.last %} {% endif %}{% empty %}선택 없음{% endfor %}</dd>
+                                    </div>
+                                    <div>
+                                        <dt>추천 레벨</dt>
+                                        <dd>Lv.{{ review.recommended_level }}</dd>
+                                    </div>
+                                    <div>
+                                        <dt>키오스크</dt>
+                                        <dd>{% if review.has_kiosk %}있음{% else %}없음{% endif %}</dd>
+                                    </div>
+                                    <div>
+                                        <dt>1인석</dt>
+                                        <dd>{% if review.has_single_seat %}있음{% else %}없음{% endif %}</dd>
+                                    </div>
+                                    <div>
+                                        <dt>콘센트</dt>
+                                        <dd>{% if review.has_con %}있음{% else %}없음{% endif %}</dd>
+                                    </div>
+                                    <div>
+                                        <dt>와이파이</dt>
+                                        <dd>{% if review.has_wifi %}있음{% else %}없음{% endif %}</dd>
+                                    </div>
+                                    <div>
+                                        <dt>별점</dt>
+                                        <dd>{{ review.rating }}</dd>
+                                    </div>
+                                </dl>
+                            </span>
+                        </button>
+
+                        <div class="review-collection-actions">
+                            <a href="{% url 'createreview' review.place.id %}" class="review-action-button review-action-button--edit">
+                                수정
+                            </a>
+
+                            <form method="post" action="{% url 'review_delete' review.id %}" class="review-delete-form">
+                                {% csrf_token %}
+                                <button type="submit" class="review-action-button review-action-button--delete">
+                                    삭제
+                                </button>
+                            </form>
+                        </div>
+                    </div>
                 {% empty %}
                     <p class="brown-light-l">작성한 후기가 없습니다.</p>
                 {% endfor %}
@@ -149,6 +219,19 @@
             <button type="button" class="review-collection-close-button" id="review-collection-close-button">
                 닫기
             </button>
+        </div>
+    </div>
+
+    <div class="review-modal" id="mypage-review-modal">
+        <div class="review-modal-content">
+            <button type="button" class="review-modal-close" id="mypage-review-modal-close">
+                닫기
+            </button>
+
+            <div class="review-modal-user" id="mypage-review-modal-user"></div>
+            <p class="review-modal-text" id="mypage-review-modal-text"></p>
+            <div class="review-modal-details" id="mypage-review-modal-details"></div>
+            <div class="review-modal-meta" id="mypage-review-modal-meta"></div>
         </div>
     </div>
 
