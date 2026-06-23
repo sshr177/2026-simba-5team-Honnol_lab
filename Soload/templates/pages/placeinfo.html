@@ -95,13 +95,21 @@
 
                 <div class="review-list">
                     {% for review in reviews|slice:":3" %}
-                        <article class="review-item review-item--clickable" tabindex="0" role="button">
+                        <article class="review-item review-item--clickable" tabindex="0" role="button" data-review-date="{{ review.created_at|date:'Y.m.d' }}">
                             <div class="review-user">
                                 <a href="{% url 'user_profile' review.writer.id %}" class="review-user-link">
-                                    {{ review.writer.profile.nickname }}
+                                    <img src="{{ review.writer.profile.character_image }}" alt="{{ review.writer.profile.level_name }}" class="review_character-image">
+
+                                    <div class="review-user-info">
+                                        <span class="review-user-name">
+                                            {{ review.writer.profile.nickname|default:review.writer.username }}
+                                        </span>
+
+                                        <span class="review-user-level">
+                                            Lv.{{ review.writer.profile.level }}
+                                        </span>
+                                    </div>
                                 </a>
-                                (Lv.{{ review.writer.profile.level }})<br>
-                                작성일 {{ review.created_at|date:"Y.m.d" }}
                         </div>
 
                         <p class="review-text">
@@ -381,13 +389,21 @@
 
             <div class="all-review-list">
                 {% for review in reviews %}
-                    <article class="all-review-item review-item--clickable" tabindex="0" role="button">
+                    <article class="all-review-item review-item--clickable" tabindex="0" role="button" data-review-date="{{ review.created_at|date:'Y.m.d' }}">
                         <div class="all-review-user review-user">
                             <a href="{% url 'user_profile' review.writer.id %}" class="review-user-link">
-                                {{ review.writer.profile.nickname }}
+                                <img src="{{ review.writer.profile.character_image }}" alt="{{ review.writer.profile.level_name }}" class="review_character-image">
+
+                                <div class="review-user-info">
+                                    <span class="review-user-name">
+                                        {{ review.writer.profile.nickname|default:review.writer.username }}
+                                    </span>
+
+                                    <span class="review-user-level">
+                                        Lv.{{ review.writer.profile.level }}
+                                    </span>
+                                </div>
                             </a>
-                            (Lv.{{ review.writer.profile.level }}) ·
-                            {{ review.created_at|date:"Y.m.d" }}
                         </div>
 
                         <p class="all-review-text review-text">{{ review.content }}</p>

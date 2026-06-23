@@ -302,7 +302,12 @@
     outline: 2px solid var(--normal, #FDE047);
     outline-offset: 2px;
 }
-
+.review-user a{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+}
 .review-user,
 .review-meta {
     color: #000;
@@ -312,12 +317,44 @@
 }
 
 .review-user-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
     color: inherit;
     text-decoration: none;
 }
 
 .review-user-link:hover {
     text-decoration: underline;
+}
+
+.review_character-image {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.review-user-info {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.review-user-name {
+    color: var(--darker, #713F12);
+    font-size: 11px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.review-user-level {
+    color: var(--dark-active, #A16207);
+    font-size: 11px;
+    font-weight: 500;
+    white-space: nowrap;
 }
 
 .review-text {
@@ -895,6 +932,17 @@ button{
     line-height: 1.5;
 }
 
+.review-modal-user .review_character-image {
+    width: 44px;
+    height: 44px;
+}
+.review-modal-user .review-user-name {
+    font-size: 18px;
+    font-weight: 600;
+}
+.review-modal-user .review-user-level {
+    font-size: 14px;
+}
 .review-modal-text {
     margin: 0 0 22px;
 
@@ -1105,4 +1153,16 @@ button{
     width: 100%;
     height: 170px;
     cursor: pointer;
+}
+.review_character-image{
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+.review-user-level {
+    color: var(--dark-active, #A16207);
+    font-size: 11px;
+    font-weight: 500;
+    white-space: nowrap;
 }

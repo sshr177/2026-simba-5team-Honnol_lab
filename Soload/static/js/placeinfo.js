@@ -519,15 +519,16 @@ document.addEventListener("DOMContentLoaded", function () {
         const text = reviewItem.querySelector(".review-text");
         const details = reviewItem.querySelector(".review-detail-data");
         const meta = reviewItem.querySelector(".review-meta");
+        const reviewDate = reviewItem.dataset.reviewDate;
 
         if (parentAllReviewModal) {
             parentAllReviewModal.classList.remove("active");
         }
 
-        reviewModalUser.textContent = user ? user.textContent.trim() : "";
+        reviewModalUser.innerHTML = user ? user.innerHTML : "";
         reviewModalText.textContent = text ? text.textContent.trim() : "";
         reviewModalDetails.innerHTML = details ? details.innerHTML : "";
-        reviewModalMeta.textContent = meta ? meta.textContent.trim() : "";
+        reviewModalMeta.textContent = `${reviewDate ? "작성일 " + reviewDate + " · " : ""}${meta ? meta.textContent.trim() : ""}`;
         reviewModal.classList.add("active");
     }
 
