@@ -191,7 +191,7 @@
 }
 
 .saved-place-modal-content {
-    width: 620px;
+    width: min(90vw, 760px);
     min-height: 460px;
 
     padding: 44px 56px 32px;
@@ -203,6 +203,7 @@
     align-items: center;
 
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 .saved-place-modal-title {
@@ -216,15 +217,21 @@
 }
 
 .saved-place-card-list {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-direction: row;
     gap: 16px;
 
-    width: 100%;
+    width: min(100%, 692px);
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 8px;
+    scroll-snap-type: x proximity;
 }
 
 .saved-place-card {
     position: relative;
+    flex: 0 0 220px;
+    width: 220px;
     min-height: 210px;
     background: var(--light, #FFFBEA);
     text-decoration: none;
@@ -234,6 +241,7 @@
     flex-direction: column;
 
     overflow: hidden;
+    scroll-snap-align: start;
 }
 
 .saved-place-tag {
@@ -327,8 +335,9 @@ button{
 }
 
 .review-collection-modal-content {
-    width: 620px;
+    width: min(90vw, 620px);
     min-height: 460px;
+    max-height: 80vh;
 
     padding: 48px 56px 32px;
 
@@ -339,6 +348,7 @@ button{
     align-items: center;
 
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 .review-collection-modal-title {
@@ -351,14 +361,21 @@ button{
 
 .review-collection-list {
     width: 100%;
+    max-height: 280px;
+
     display: flex;
     flex-direction: column;
     gap: 20px;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 8px;
 }
 
 .review-collection-item {
     width: 100%;
     height: 64px;
+    flex: 0 0 64px;
 
     display: flex;
     justify-content: center;
@@ -519,7 +536,15 @@ button{
         padding: 32px 24px;
     }
 
+    .review-collection-list {
+        max-height: 55vh;
+    }
+
     .saved-place-card-list {
-        grid-template-columns: 1fr;
+        width: 100%;
+    }
+
+    .saved-place-card {
+        flex-basis: 220px;
     }
 }
