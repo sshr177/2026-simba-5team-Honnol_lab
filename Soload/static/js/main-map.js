@@ -16,6 +16,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const searchInput = document.getElementById("place-search-input");
     const searchButton = document.getElementById("place-search-button");
     const resultList = document.getElementById("search-result-list");
+    const categoryFilter = document.getElementById("map-category-filter");
+    const categoryToggleButton = document.getElementById("map-category-toggle");
+    const categoryFilterButtons = document.querySelectorAll(".map-category-menu button");
     const mapControl = document.querySelector(".map-control");
     const mapZoomInButton = document.getElementById("map-zoom-in-button");
     const mapZoomOutButton = document.getElementById("map-zoom-out-button");
@@ -23,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const placesService = new kakao.maps.services.Places();
     const placesDataElement = document.getElementById("places-data");
+    const placeOverlays = [];
     let searchPreviewMarker = null;
     let currentLocationMarker = null;
 
@@ -76,6 +80,58 @@ document.addEventListener("DOMContentLoaded", function () {
         return "place-map-marker--default";
     }
 
+    function getCategoryGroup(category) {
+        const value = String(category || "").toLowerCase();
+
+        if (value.includes("카페") || value.includes("cafe") || value.includes("ce7")) {
+            return "cafe";
+        }
+
+        if (
+            value.includes("음식") ||
+            value.includes("식당") ||
+            value.includes("맛집") ||
+            value.includes("restaurant") ||
+            value.includes("fd6")
+        ) {
+            return "restaurant";
+        }
+
+        if (
+            value.includes("문화") ||
+            value.includes("전시") ||
+            value.includes("공연") ||
+            value.includes("극장") ||
+            value.includes("영화") ||
+            value.includes("소품") ||
+            value.includes("편집") ||
+            value.includes("culture") ||
+            value.includes("ct1")
+        ) {
+            return "culture";
+        }
+
+        if (
+            value.includes("관광") ||
+            value.includes("공원") ||
+            value.includes("산책") ||
+            value.includes("tour") ||
+            value.includes("walk") ||
+            value.includes("at4")
+        ) {
+            return "tour";
+        }
+
+        return "other";
+    }
+
+    function filterPlaceOverlays(category) {
+        placeOverlays.forEach(function (item) {
+            const shouldShow = category === "all" || item.categoryGroup === category;
+            item.overlay.setMap(shouldShow ? map : null);
+        });
+    }
+
     if (placesDataElement) {
         const savedPlaces = JSON.parse(placesDataElement.textContent);
 
@@ -101,14 +157,42 @@ document.addEventListener("DOMContentLoaded", function () {
                 window.location.href =`/placeinfo/${place.id}/`;
             });
 
-            new kakao.maps.CustomOverlay({
+            const overlay = new kakao.maps.CustomOverlay({
                 map: map,
                 position: position,
                 content: markerContent,
                 yAnchor: 1
             });
+
+            placeOverlays.push({
+                overlay: overlay,
+                categoryGroup: getCategoryGroup(place.category)
+            });
         });
     }
+
+    if (categoryFilter && categoryToggleButton) {
+        categoryToggleButton.addEventListener("click", function () {
+            const isOpen = categoryFilter.classList.toggle("open");
+            categoryToggleButton.setAttribute("aria-expanded", String(isOpen));
+        });
+    }
+
+    categoryFilterButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+            categoryFilterButtons.forEach(function (item) {
+                item.classList.remove("active");
+            });
+
+            button.classList.add("active");
+            filterPlaceOverlays(button.dataset.category);
+
+            if (categoryFilter && categoryToggleButton) {
+                categoryFilter.classList.remove("open");
+                categoryToggleButton.setAttribute("aria-expanded", "false");
+            }
+        });
+    });
 
     function renderSearchResults(results) {
         if (!resultList) {

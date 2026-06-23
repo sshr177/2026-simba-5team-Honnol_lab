@@ -76,6 +76,21 @@
         <div class="search-result-list" id="search-result-list"></div>
 
         <div class="map-section_map" id="map">
+            <div class="map-category-filter" id="map-category-filter">
+                <button type="button" class="map-category-toggle" id="map-category-toggle" aria-label="지도 카테고리 필터 열기" aria-expanded="false">
+                    ☰
+                </button>
+
+                <div class="map-category-menu" id="map-category-menu" aria-label="지도 카테고리 필터">
+                    <button type="button" class="active" data-category="all">전체</button>
+                    <button type="button" data-category="cafe">카페</button>
+                    <button type="button" data-category="restaurant">음식점</button>
+                    <button type="button" data-category="culture">문화</button>
+                    <button type="button" data-category="tour">관광/산책</button>
+                    <button type="button" data-category="other">기타</button>
+                </div>
+            </div>
+
             <div class="map-control">
                 <button type="button" id="map-zoom-in-button" aria-label="지도 확대">+</button>
                 <button type="button" id="map-zoom-out-button" aria-label="지도 축소">-</button>
