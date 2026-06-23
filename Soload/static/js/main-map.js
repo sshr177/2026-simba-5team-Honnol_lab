@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const placesService = new kakao.maps.services.Places();
     const placesDataElement = document.getElementById("places-data");
+    let searchPreviewMarker = null;
 
     function getCSRFToken() {
         const cookie = document.cookie
@@ -232,6 +233,23 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             renderSearchResults(data);
+
+            const firstPlace = data[0];
+            const position = new kakao.maps.LatLng(
+                Number(firstPlace.y),
+                Number(firstPlace.x)
+            );
+
+            map.panTo(position);
+
+            if (searchPreviewMarker) {
+                searchPreviewMarker.setMap(null);
+            }
+
+            searchPreviewMarker = new kakao.maps.Marker({
+                map: map,
+                position: position
+            });
         });
     }
 

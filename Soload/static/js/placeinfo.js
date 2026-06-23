@@ -532,7 +532,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     reviewItems.forEach(function (reviewItem) {
-        reviewItem.addEventListener("click", function () {
+        reviewItem.addEventListener("click", function (event) {
+            if (event.target.closest(".review-user-link")) {
+                return;
+            }
+
             openReviewModal(reviewItem);
         });
 

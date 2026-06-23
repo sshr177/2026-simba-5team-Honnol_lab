@@ -294,12 +294,17 @@ def get_place_group(category):
     return 'culture'
 
 def user_profile(request, user_id):
+    if not request.user.is_authenticated:
+        return redirect('start')
+
     profile_user = get_object_or_404(User, pk=user_id)
-    profile = profile_user.profile
-    user_reviews = Review.objects.filter(writer=profile_user)
+    likes = PlaceLike.objects.filter(user=profile_user).select_related('place')
+    my_reviews = Review.objects.filter(writer=profile_user).select_related('place')
     
     return render(request, 'pages/user_profile.html',{
         'profile_user': profile_user,
-        'profile': profile,
-        'user_reviews': user_reviews,
+        'user_profile': profile_user.profile,
+        'likes': likes,
+        'my_reviews': my_reviews,
+        'is_own_profile': request.user == profile_user,
     })

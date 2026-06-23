@@ -97,7 +97,9 @@
                     {% for review in reviews|slice:":3" %}
                         <article class="review-item review-item--clickable" tabindex="0" role="button">
                             <div class="review-user">
-                                {{ review.writer.profile.nickname }}
+                                <a href="{% url 'user_profile' review.writer.id %}" class="review-user-link">
+                                    {{ review.writer.profile.nickname }}
+                                </a>
                                 (Lv.{{ review.writer.profile.level }})<br>
                                 작성일 {{ review.created_at|date:"Y.m.d" }}
                         </div>
@@ -381,7 +383,9 @@
                 {% for review in reviews %}
                     <article class="all-review-item review-item--clickable" tabindex="0" role="button">
                         <div class="all-review-user review-user">
-                            {{ review.writer.profile.nickname }}
+                            <a href="{% url 'user_profile' review.writer.id %}" class="review-user-link">
+                                {{ review.writer.profile.nickname }}
+                            </a>
                             (Lv.{{ review.writer.profile.level }}) ·
                             {{ review.created_at|date:"Y.m.d" }}
                         </div>

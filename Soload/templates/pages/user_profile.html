@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ profile_user.profile.nickname|default:profile_user.username }}님의 페이지 | Soload{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/mypage.css' %}">
+<main class = "mypage">
+    <section class = "mypage_profile-section">
+        <div class = "mypage_character-card">
+            <img src="{{ user_profile.character_image }}" alt="{{ user_profile.level_name}}" class="mypage_character-image">
+        </div>
+
+        <div class = "mypage_level-info">
+            <span class = "mypage_level-title brown-dark-xl">
+                {{ profile_user.profile.nickname|default:profile_user.username }}님의 레벨 : {{ user_profile.level_name}} (LV.{{ user_profile.level }})
+            </span>
+
+            <span class = "mypage_level-discription brown-light-m">
+                이 유저가 쌓아온 혼놀 성장 기록이에요.
+            </span>
+
+            <span class = "mypage_exp-text brown-light-l">
+                현재 경험치 {{ user_profile.exp }} / {{ user_profile.required_exp}} EXP
+            </span>
+            {% widthratio user_profile.exp user_profile.required_exp 100 as exp_percent %}
+
+            <div class="mypage_progress">
+                <div class="mypage_progress-fill" style="width: {% if user_profile.level >= 5 %}100{% else %}{{ exp_percent }}{% endif %}%;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class = "mypage_activity-section">
+        <section class = "growth-section">
+            <div class = "growth-section_title">병아리 성장단계</div>
+            <div class = "growth-stage-list">
+                <div class="growth-stage {% if user_profile.level == 1 %}growth-stage--active{% endif %}">
+                    <img src="{% static 'images/chick-stage-1.png' %}" alt="1단계 병아리">
+                </div>
+
+                <div class="growth-stage {% if user_profile.level == 2 %}growth-stage--active{% endif %}">
+                    <img src="{% static 'images/chick-stage-2.png' %}" alt="2단계 병아리">
+                </div>
+
+                <div class="growth-stage {% if user_profile.level == 3 %}growth-stage--active{% endif %}">
+                    <img src="{% static 'images/chick-stage-3.png' %}" alt="3단계 병아리">
+                </div>
+
+                <div class="growth-stage {% if user_profile.level == 4 %}growth-stage--active{% endif %}">
+                    <img src="{% static 'images/chick-stage-4.png' %}" alt="4단계 병아리">
+                </div>
+
+                <div class="growth-stage {% if user_profile.level == 5 %}growth-stage--active{% endif %}">
+                    <img src="{% static 'images/chick-stage-5.png' %}" alt="5단계 병아리">
+                </div>
+            </div>
+
+            <div class = "brown-light-l">
+                {{ profile_user.profile.nickname|default:profile_user.username }}님의 현재 성장 단계예요.
+            </div>
+        </section>
+
+        <section class = "mypage_menu-section">
+            <div class="activity_content">
+                <span class="title-brown">활동 보기</span>
+            </div>
+
+            <div class="activity_button-group">
+                <button type="button" class = "mypage_menu-button" id="saved-place-button">
+                    찜한 장소<br>
+                    목록
+                </button>
+
+                <button type="button" class = "mypage_menu-button" id="review-collection-button">
+                    작성 후기<br>
+                    모아보기
+                </button>
+            </div>
+        </section>
+    </section>
+
+
+    <div class="saved-place-modal" id="saved-place-modal">
+        <div class="saved-place-modal-content">
+            <div class="saved-place-modal-title">
+                {{ profile_user.profile.nickname|default:profile_user.username }}님의 찜한 장소
+            </div>
+
+            <div class="saved-place-card-list">
+                {% for like in likes %}
+                    <a href="{% url 'placeinfo' like.place.id %}" class="saved-place-card">
+                        <span class="saved-place-tag">Lv.{{ like.place.recommended_level }} 추천</span>
+                        
+                        <div class="saved-place-image">
+                            {% if like.place.thumbnail %}
+                                <img src="{{ like.place.thumbnail }}" alt="{{ like.place.name }}">
+                            {% else %}
+                                <p class="brown-light-l">사진 없음</p>
+                            {% endif %}
+                        </div>
+
+                        <div class="saved-place-body">
+                            <strong class="brown-light-l">{{ like.place.name }}</strong>
+                            <p>{{ like.place.category }} · {{ like.place.address }}</p>
+                        </div>
+                    </a>
+                {% empty %}
+                    <p class="brown-light-l">찜한 장소가 없습니다.</p>
+                {% endfor %}
+            </div>
+
+            <button type="button" class="saved-place-close-button" id="saved-place-close-button">
+                닫기
+            </button>
+        </div>
+    </div>
+
+
+    <div class="review-collection-modal" id="review-collection-modal">
+        <div class="review-collection-modal-content">
+            <div class="review-collection-modal-title">
+                {{ profile_user.profile.nickname|default:profile_user.username }}님의 작성 후기
+            </div>
+
+            <div class="review-collection-list">
+                {% for review in my_reviews %}
+                    <a href="{% url 'placeinfo' review.place.id %}" class="review-collection-item">
+                    <span class="review-place-name">
+                        {{ review.place.name }}
+                    </span>
+
+                    <span class="review-visit-date">
+                        작성일 : {{ review.created_at|date:"Y.m.d" }}
+                    </span>
+                </a>
+                {% empty %}
+                    <p class="brown-light-l">작성한 후기가 없습니다.</p>
+                {% endfor %}
+            </div>
+
+            <button type="button" class="review-collection-close-button" id="review-collection-close-button">
+                닫기
+            </button>
+        </div>
+    </div>
+
+</main>
+
+<script src="{% static 'js/mypage.js' %}"></script>
+{% endblock %}

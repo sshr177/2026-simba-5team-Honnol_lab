@@ -311,6 +311,15 @@
     font-weight: 500;
 }
 
+.review-user-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.review-user-link:hover {
+    text-decoration: underline;
+}
+
 .review-text {
     overflow: hidden;
     white-space: nowrap;
