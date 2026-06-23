@@ -56,4 +56,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
         savePopup.classList.add("open");
     });
+
+    const reviewImageInput = document.querySelector("#review-image");
+    const photoUploadFileName = document.querySelector("#photo-upload-file-name");
+
+    reviewImageInput.addEventListener("change", function () {
+        const fileCount = reviewImageInput.files.length;
+
+        if (fileCount === 0) {
+            photoUploadFileName.textContent = "선택된 사진 없음";
+            return;
+        }
+
+        if (fileCount === 1) {
+            photoUploadFileName.textContent = reviewImageInput.files[0].name;
+            return;
+        }
+
+        photoUploadFileName.textContent = `${fileCount}개의 사진 선택됨`;
+    });
 });

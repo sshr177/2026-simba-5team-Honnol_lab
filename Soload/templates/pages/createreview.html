@@ -50,16 +50,19 @@
         <div class="sense_score_box_group">
             <label class="sense_score_box">
                 <input type="radio" name="nunchi_score" value="1">
+                <img src="{% static 'images/emoji-low.png' %}">
                 <span class="brown-dark-m">낮음</span>
                 <span class="brown-dark-m">(괜찮았어요)</span>
             </label>
             <label class="sense_score_box">
                 <input type="radio" name="nunchi_score" value="2">
+                <img src="{% static 'images/emoji-mid.png' %}">
                 <span class="brown-dark-m">보통</span>
                 <span class="brown-dark-m">(그저 그래요)</span>
             </label>
             <label class="sense_score_box">
                 <input type="radio" name="nunchi_score" value="3">
+                <img src="{% static 'images/emoji-high.png' %}">
                 <span class="brown-dark-m">높음</span>
                 <span class="brown-dark-m">(눈치가 보였어요)</span>
             </label>
@@ -129,7 +132,18 @@
     </div>
     <div class="review_write">
         <div class="review_write_header">
-            <span class="brown-dark-l">6. 키오스크</span>
+            <span class="brown-dark-l">6. 사진 업로드</span>
+            <span class="brown-light-s">관련 사진을 자유롭게 업로드해주세요.</span>
+        </div>
+        <div class="photo-upload">
+            <input type="file" name="image" id="review-image" multiple>
+            <label for="review-image" class="photo-upload-label brown-light-l">사진 선택하기</label>
+            <span class="brown-light-l" id="photo-upload-file-name">선택된 사진 없음</span>
+        </div>
+    </div>
+    <div class="review_write">
+        <div class="review_write_header">
+            <span class="brown-dark-l">7. 키오스크</span>
         </div>
         <div class="kiosk_box_group">
             <label class="kiosk_box">
@@ -144,7 +158,7 @@
     </div>
     <div class="review_write">
         <div class="review_write_header">
-            <span class="brown-dark-l">7. 1인용 좌석</span>
+            <span class="brown-dark-l">8. 1인용 좌석</span>
         </div>
         <div class="sole_seat_box_group">
             <label class="sole_seat_box">
@@ -159,7 +173,7 @@
     </div>
     <div class="review_write">
         <div class="review_write_header">
-            <span class="brown-dark-l">8. 콘센트</span>
+            <span class="brown-dark-l">9. 콘센트</span>
         </div>
         <div class="power_outlet_box_group">
             <label class="power_outlet_box">
@@ -174,7 +188,7 @@
     </div>
     <div class="review_write">
         <div class="review_write_header">
-            <span class="brown-dark-l">9. 와이파이</span>
+            <span class="brown-dark-l">10. 와이파이</span>
         </div>
         <div class="wife_box_group">
             <label class="wife_box">
@@ -189,7 +203,7 @@
     </div>
     <div class="review_write">
         <div class="review_write_header">
-            <span class="brown-dark-l">10. 장소 별점</span>
+            <span class="brown-dark-l">11. 장소 별점</span>
             <span class="brown-light-s">해당 장소의 별점을 적어주세요!</span>
         </div>
         <div class="place_rating">
@@ -207,7 +221,7 @@
     </div>
     <div class="review_write">
         <div class="review_write_header">
-            <span class="brown-dark-l">11. 한줄 후기 작성</span>
+            <span class="brown-dark-l">12. 한줄 후기 작성</span>
             <span class="brown-light-s">이 장소를 한 줄로 표현한다면?</span>
         </div>
         <textarea name="content" class="real_review" placeholder="예) 조용하고 집중이 잘 되는 카페였어요!"></textarea>
