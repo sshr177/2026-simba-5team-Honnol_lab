@@ -465,5 +465,75 @@
         font-size: 26px;
     }
 }
+.place-map-marker {
+    min-width: 100px;
+    height: 40px;
 
+    padding: 0 15px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
 
+    border: 2px solid #FDE047;
+    border-radius: 999px;
+
+    background-color: #ffffff;
+    color: var(--darker, #713F12);
+
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+
+    white-space: nowrap;
+    cursor: pointer;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.16);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.place-map-marker:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.22);
+}
+
+.place-map-marker-level {
+    color: var(--text-green-dark, #598300);
+}
+
+.place-map-marker-divider {
+    color: #D6B85A;
+    font-weight: 500;
+}
+
+.place-map-marker-rating {
+    color: var(--darker, #713F12);
+}
+
+.place-map-marker--cafe {
+    border-color: #22C55E;
+}
+
+.place-map-marker--restaurant {
+    border-color: #F59E0B;
+}
+
+.place-map-marker--culture {
+    border-color: #8B5CF6;
+}
+
+.place-map-marker--tour {
+    border-color: #38BDF8;
+}
+
+.place-map-marker--hotel {
+    border-color: #60A5FA;
+}
+
+.place-map-marker--hospital {
+    border-color: #EF4444;
+}
+
+.place-map-marker--default {
+    border-color: #FDE047;
+}
