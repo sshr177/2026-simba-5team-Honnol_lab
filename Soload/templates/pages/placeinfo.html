@@ -53,7 +53,7 @@
                 </div>
 
                 <div class="place-rating">
-                    <span class="place-rating-stars">★ {{ avg_rating|default:"평점 없음" }}</span>
+                    <span class="place-rating-stars">★ {{ avg_rating|floatformat:1|default:"평점 없음" }}</span>
                     <span class="place-rating-count">(후기 {{ review_count }}개)</span>
                 </div>
 
@@ -73,9 +73,15 @@
             <section class="review-preview-section">
                 <div class="section-header">
                     <div>사람들 한줄평</div>
-                    <a href="?same_level=1" class="review-more-button">
-                        같은 레벨 후기만 보기
-                    </a>
+                    {% if request.GET.same_level %}
+                        <a href="{% url 'placeinfo' place.id %}" class="review-more-button">
+                            전체 후기 보기
+                        </a>
+                    {% else %}    
+                        <a href="?same_level=1" class="review-more-button">
+                            같은 레벨 후기만 보기
+                        </a>
+                    {% endif %}
                 </div>
 
                 <div class="review-list">

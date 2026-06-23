@@ -158,7 +158,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
 
         restaurant:{
-            title: "🍽️밥집",
+            title: "🍽️음식점",
             levels: {
                 1: [
                     "혼밥하는 사람은 생각보다 많아요. 너무 걱정하지 않아도 괜찮아요.",
