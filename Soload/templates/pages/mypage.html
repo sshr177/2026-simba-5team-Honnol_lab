@@ -8,13 +8,14 @@
 <main class = "mypage">
     <section class = "mypage_profile-section">
         <div class = "mypage_character-card">
-            <img src="{{ user_profile.character_image }}" alt="{{ user_profile.level_name}}" class="mypage_character-image">
+            <img src="{{ user_profile.display_image }}" alt="{{ user_profile.level_name}}" class="mypage_character-image">
         </div>
 
         <div class = "mypage_level-info">
             <span class = "mypage_level-title brown-dark-xl">
-                나의 레벨 : {{ user_profile.level_name}} (LV.{{ user_profile.level }})
+                {{ user_profile.user.username }}
             </span>
+            
 
             <span class = "mypage_level-discription brown-light-m">
                 후기를 작성하고 레벨을 올려보세요!
@@ -29,12 +30,16 @@
                 <div class="mypage_progress-fill" style="width: {% if user_profile.level >= 5 %}100{% else %}{{ exp_percent }}{% endif %}%;">
                 </div>
             </div>
+
+            <button type="button" class="mypage_profile-edit-button" id="profile-edit-button">
+                정보수정
+            </button>
         </div>
     </section>
 
     <section class = "mypage_activity-section">
         <section class = "growth-section">
-            <div class = "growth-section_title">병아리 성장단계</div>
+            <div class = "growth-section_title">병아리 성장단계 : {{ user_profile.level_name}} (LV.{{ user_profile.level }})</div>
             <div class = "growth-stage-list">
                 <div class="growth-stage {% if user_profile.level == 1 %}growth-stage--active{% endif %}">
                     <img src="{% static 'images/chick-stage-1.png' %}" alt="1단계 병아리">
@@ -77,6 +82,7 @@
                     작성 후기<br>
                     모아보기
                 </button>
+
             </div>
         </section>
     </section>
@@ -143,6 +149,51 @@
             <button type="button" class="review-collection-close-button" id="review-collection-close-button">
                 닫기
             </button>
+        </div>
+    </div>
+
+    <div class="profile-edit-modal{% if profile_error %} active{% endif %}" id="profile-edit-modal">
+        <div class="profile-edit-modal-content">
+            <button type="button" class="profile-edit-x-button" id="profile-edit-close-button" aria-label="닫기">
+                ×
+            </button>
+
+            {% if profile_error %}
+                <p class="profile-edit-error">{{ profile_error }}</p>
+            {% endif %}
+
+            <form method="post" class="profile-edit-form" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="form_type" value="profile_edit">
+
+                <div class="profile-edit-card">
+                    <div class="profile-edit-photo-area">
+                        <div class="profile-edit-photo-preview">
+                            <img src="{{ user_profile.display_image }}" alt="프로필사진">
+                        </div>
+
+                        <label class="profile-edit-file-button">
+                            프로필사진
+                            <input type="file" name="image" accept="image/*">
+                        </label>
+                    </div>
+
+                    <div class="profile-edit-info-area">
+                        <div class="profile-edit-modal-title">
+                            정보수정
+                        </div>
+
+                        <label class="profile-edit-field">
+                            <span>닉네임</span>
+                            <input type="text" name="nickname" value="{{ user_profile.nickname }}">
+                        </label>
+
+                        <button type="submit" class="profile-edit-save-button">
+                            저장
+                        </button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 

@@ -25,6 +25,7 @@ STAY_CHOICES = [
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     nickname = models.CharField(max_length=30, blank=True)
+    image = models.ImageField(upload_to='profiles/', blank=True)
     level = models.IntegerField(default=1)
     exp = models.IntegerField(default=0)
     test_score = models.IntegerField(default=0)
@@ -37,6 +38,11 @@ class Profile(models.Model):
     
     def character_image(self):
         return f"/static/images/chick-stage-{self.level}.png"
+
+    def display_image(self):
+        if self.image:
+            return self.image.url
+        return self.character_image()
         
     def __str__(self):
         return f"{self.user.username} (Lv.{self.level})"

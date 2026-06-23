@@ -7,6 +7,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const reviewCollectionModal = document.getElementById("review-collection-modal");
     const reviewCollectionCloseButton = document.getElementById("review-collection-close-button");
 
+    const profileEditOpenButton = document.getElementById("profile-edit-button");
+    const profileEditModal = document.getElementById("profile-edit-modal");
+    const profileEditCloseButton = document.getElementById("profile-edit-close-button");
+
     if (savedPlaceOpenButton && savedPlaceModal && savedPlaceCloseButton) {
         savedPlaceOpenButton.addEventListener("click", function () {
             savedPlaceModal.classList.add("active");
@@ -35,6 +39,22 @@ document.addEventListener("DOMContentLoaded", function () {
         reviewCollectionModal.addEventListener("click", function (event) {
             if (event.target === reviewCollectionModal) {
                 reviewCollectionModal.classList.remove("active");
+            }
+        });
+    }
+
+    if (profileEditOpenButton && profileEditModal && profileEditCloseButton) {
+        profileEditOpenButton.addEventListener("click", function () {
+            profileEditModal.classList.add("active");
+        });
+
+        profileEditCloseButton.addEventListener("click", function () {
+            profileEditModal.classList.remove("active");
+        });
+
+        profileEditModal.addEventListener("click", function (event) {
+            if (event.target === profileEditModal) {
+                profileEditModal.classList.remove("active");
             }
         });
     }
