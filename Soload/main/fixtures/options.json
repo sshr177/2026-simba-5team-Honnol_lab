@@ -1,0 +1,298 @@
+[
+{
+  "model": "main.tag",
+  "pk": 1,
+  "fields": {
+    "name": "조용함",
+    "group": "common"
+  }
+},
+{
+  "model": "main.tag",
+  "pk": 2,
+  "fields": {
+    "name": "시끄러움",
+    "group": "common"
+  }
+},
+{
+  "model": "main.tag",
+  "pk": 3,
+  "fields": {
+    "name": "분위기좋음",
+    "group": "common"
+  }
+},
+{
+  "model": "main.tag",
+  "pk": 4,
+  "fields": {
+    "name": "깔끔함",
+    "group": "common"
+  }
+},
+{
+  "model": "main.tag",
+  "pk": 5,
+  "fields": {
+    "name": "넓은공간",
+    "group": "common"
+  }
+},
+{
+  "model": "main.tag",
+  "pk": 6,
+  "fields": {
+    "name": "혼자공부하기좋음",
+    "group": "culture"
+  }
+},
+{
+  "model": "main.tag",
+  "pk": 8,
+  "fields": {
+    "name": "주차가능",
+    "group": "culture"
+  }
+},
+{
+  "model": "main.tag",
+  "pk": 9,
+  "fields": {
+    "name": "뷰좋음",
+    "group": "common"
+  }
+},
+{
+  "model": "main.tag",
+  "pk": 10,
+  "fields": {
+    "name": "사람많음",
+    "group": "common"
+  }
+},
+{
+  "model": "main.tag",
+  "pk": 11,
+  "fields": {
+    "name": "테이블넓음",
+    "group": "culture"
+  }
+},
+{
+  "model": "main.tag",
+  "pk": 12,
+  "fields": {
+    "name": "와이파이빵빵",
+    "group": "culture"
+  }
+},
+{
+  "model": "main.tag",
+  "pk": 13,
+  "fields": {
+    "name": "인테리어예쁨",
+    "group": "common"
+  }
+},
+{
+  "model": "main.tag",
+  "pk": 14,
+  "fields": {
+    "name": "가성비좋음",
+    "group": "culture"
+  }
+},
+{
+  "model": "main.tag",
+  "pk": 15,
+  "fields": {
+    "name": "반려동물가능",
+    "group": "common"
+  }
+},
+{
+  "model": "main.tag",
+  "pk": 16,
+  "fields": {
+    "name": "구경하기좋음",
+    "group": "culture"
+  }
+},
+{
+  "model": "main.tag",
+  "pk": 17,
+  "fields": {
+    "name": "혼자온사람많음",
+    "group": "common"
+  }
+},
+{
+  "model": "main.tag",
+  "pk": 18,
+  "fields": {
+    "name": "구경거리많음",
+    "group": "food"
+  }
+},
+{
+  "model": "main.tag",
+  "pk": 19,
+  "fields": {
+    "name": "재방문의사있음",
+    "group": "food"
+  }
+},
+{
+  "model": "main.tag",
+  "pk": 20,
+  "fields": {
+    "name": "아기자기함",
+    "group": "food"
+  }
+},
+{
+  "model": "main.tag",
+  "pk": 21,
+  "fields": {
+    "name": "굿즈맛집",
+    "group": "food"
+  }
+},
+{
+  "model": "main.tag",
+  "pk": 22,
+  "fields": {
+    "name": "특별한경험",
+    "group": "food"
+  }
+},
+{
+  "model": "main.tag",
+  "pk": 23,
+  "fields": {
+    "name": "시간순삭",
+    "group": "food"
+  }
+},
+{
+  "model": "main.tag",
+  "pk": 24,
+  "fields": {
+    "name": "사진맛집",
+    "group": "food"
+  }
+},
+{
+  "model": "main.purpose",
+  "pk": 1,
+  "fields": {
+    "name": "공부",
+    "group": "culture"
+  }
+},
+{
+  "model": "main.purpose",
+  "pk": 2,
+  "fields": {
+    "name": "과제",
+    "group": "culture"
+  }
+},
+{
+  "model": "main.purpose",
+  "pk": 3,
+  "fields": {
+    "name": "독서",
+    "group": "common"
+  }
+},
+{
+  "model": "main.purpose",
+  "pk": 4,
+  "fields": {
+    "name": "혼밥",
+    "group": "culture"
+  }
+},
+{
+  "model": "main.purpose",
+  "pk": 5,
+  "fields": {
+    "name": "데이트",
+    "group": "common"
+  }
+},
+{
+  "model": "main.purpose",
+  "pk": 6,
+  "fields": {
+    "name": "구경",
+    "group": "common"
+  }
+},
+{
+  "model": "main.purpose",
+  "pk": 7,
+  "fields": {
+    "name": "작업",
+    "group": "common"
+  }
+},
+{
+  "model": "main.purpose",
+  "pk": 8,
+  "fields": {
+    "name": "휴식",
+    "group": "common"
+  }
+},
+{
+  "model": "main.purpose",
+  "pk": 9,
+  "fields": {
+    "name": "대기",
+    "group": "common"
+  }
+},
+{
+  "model": "main.purpose",
+  "pk": 10,
+  "fields": {
+    "name": "모임 전",
+    "group": "common"
+  }
+},
+{
+  "model": "main.purpose",
+  "pk": 11,
+  "fields": {
+    "name": "기타",
+    "group": "common"
+  }
+},
+{
+  "model": "main.purpose",
+  "pk": 12,
+  "fields": {
+    "name": "힐링",
+    "group": "food"
+  }
+},
+{
+  "model": "main.purpose",
+  "pk": 13,
+  "fields": {
+    "name": "굿즈구매",
+    "group": "food"
+  }
+},
+{
+  "model": "main.purpose",
+  "pk": 14,
+  "fields": {
+    "name": "문화생활",
+    "group": "food"
+  }
+}
+]
