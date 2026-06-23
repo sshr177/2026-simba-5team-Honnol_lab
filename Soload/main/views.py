@@ -35,6 +35,7 @@ def main(request):
             "lat": float(place.latitude),
             "lng": float(place.longitude),
             "recommended_level": place.recommended_level,
+            "category": place.category,
             "avg_rating": place.reviews.aggregate(a=Avg("rating"))["a"] or 0,
             "review_count": place.reviews.count(),
         })
