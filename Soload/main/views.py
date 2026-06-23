@@ -229,5 +229,6 @@ def create_place(request):
                 longitude = float(lng) if lng else None,
 
             )
-        return redirect('placeinfo', place_id=place.id)
+            return redirect('createreview', place_id=place_id)
+        return JsonResponse({'exists': False})
     return redirect('main')
