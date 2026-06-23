@@ -12,11 +12,11 @@ def main(request):
 
     user_profile = request.user.profile
     level = user_profile.level
-    places = Place.objects.filter(recommended_level=level)
+    places = Place.objects.filter(recommended_level__gte=level-1, recommended_level__lte=level+1)
 
     places_data = []
 
-    for place in places:
+    for place in Place.objects.all():
         if place.latitude is None or place.longitude is None:
             continue
 
@@ -26,6 +26,9 @@ def main(request):
             "lat": float(place.latitude),
             "lng": float(place.longitude),
             "recommended_level": place.recommended_level,
+            "avg_rating": place.reviews.aggregate(a=Avg("rating"))["a"] or 0,
+            "avg_nunchi": place.reviews.aggregate(a=Avg("nunchi_score"))["a"] or 0,
+            "review_count": place.reviews.count(),
         })
 
     return render(request, 'pages/main.html', {
@@ -131,6 +134,11 @@ def createreview(request, place_id):
         for pid in request.POST.getlist('purposes'):
             review.purposes.add(get_object_or_404(Purpose, pk=pid))
 
+        avg_level = place.reviews.aggregate(a=Avg('recommended_level'))['a']
+        if avg_level is not None:
+            place.recommended_level = round(avg_level)
+            place.save()
+
         p = request.user.profile
         p.exp += 50 #리뷰작성시 들어오는 경험치
         if p.exp >= p.required_exp() and p.level < 5:
@@ -186,8 +194,8 @@ def lastpage(request):
     return render(request, 'pages/honnoltest/lastpage.html')
 
 def score_to_level(score):
-    if score <= 17: return 1
-    elif score <= 33: return 2
+    if score <= 24: return 1
+    elif score <= 37: return 2
     else: return 3
 
 def place_like(request, place_id):
