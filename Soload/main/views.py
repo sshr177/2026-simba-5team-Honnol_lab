@@ -13,15 +13,7 @@ def main(request):
 
     user_profile = request.user.profile
 
-    places = Place.objects.all()
-    category = request.GET.get('category')
-    level = request.GET.get('level')
-
-    if category:
-        places = places.filter(category=category)
-
-    if level:
-        places = places.filter(recommended_level=level)
+    places = Place.objects.filter(recommended_level=user_profile.level).order_by('?')
 
     liked_place_ids = set(
         PlaceLike.objects.filter(user=request.user).values_list('place_id', flat=True)
@@ -49,8 +41,6 @@ def main(request):
         'places': places,
         'places_data': places_data,
         'active_nav': 'main',
-        'category': category,
-        'level': level,
         'liked_place_ids': liked_place_ids
     }) 
 
