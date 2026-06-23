@@ -1,169 +1,186 @@
 [
 {
-  "model": "main.place",
-  "pk": 1,
-  "fields": {
-    "name": "어글리 베이컨 연남점",
-    "recommended_level": 1,
-    "category": "카페",
-    "address": "서울 마포구 성미산로 161-1 1층",
-    "descirptions": "",
-    "opening_hours": "",
-    "tel": "",
-    "has_wifi": false,
-    "has_con": false,
-    "has_kiosk": false,
-    "has_single_seat": false,
-    "has_partition": false,
-    "parking_available": false,
-    "created_at": "2026-06-22T17:36:01.712Z",
-    "latitude": 37.5636,
-    "longitude": 126.925,
-    "kakao_id": ""
-  }
-},
-{
-  "model": "main.placeimage",
-  "pk": 1,
-  "fields": {
-    "place": 1,
-    "image": "places/스크린샷_2026-05-11_오후_11_L6v6GTm.26.41.png"
-  }
-},
-{
-  "model": "main.placeimage",
-  "pk": 2,
-  "fields": {
-    "place": 1,
-    "image": "places/스크린샷_2026-06-21_오전_5_8bEFUSq.58.53.png"
-  }
-},
-{
-  "model": "main.placeimage",
-  "pk": 3,
-  "fields": {
-    "place": 1,
-    "image": "places/_77a21538-53ac-4c8c-bb3b-0bd61109a716.jpg"
-  }
-},
-{
-  "model": "main.placeimage",
-  "pk": 4,
-  "fields": {
-    "place": 1,
-    "image": "places/스크린샷_2026-05-19_오후_5.31.17.png"
-  }
-},
-{
   "model": "main.tag",
   "pk": 1,
   "fields": {
-    "name": "조용함"
+    "name": "조용함",
+    "group": "common"
   }
 },
 {
   "model": "main.tag",
   "pk": 2,
   "fields": {
-    "name": "시끄러움"
+    "name": "시끄러움",
+    "group": "common"
   }
 },
 {
   "model": "main.tag",
   "pk": 3,
   "fields": {
-    "name": "분위기좋음"
+    "name": "분위기좋음",
+    "group": "common"
   }
 },
 {
   "model": "main.tag",
   "pk": 4,
   "fields": {
-    "name": "깔끔함"
+    "name": "깔끔함",
+    "group": "common"
   }
 },
 {
   "model": "main.tag",
   "pk": 5,
   "fields": {
-    "name": "넓은공간"
+    "name": "넓은공간",
+    "group": "common"
   }
 },
 {
   "model": "main.tag",
   "pk": 6,
   "fields": {
-    "name": "혼자공부하기좋음"
+    "name": "혼자공부하기좋음",
+    "group": "culture"
   }
 },
 {
   "model": "main.tag",
   "pk": 8,
   "fields": {
-    "name": "주차가능"
+    "name": "주차가능",
+    "group": "culture"
   }
 },
 {
   "model": "main.tag",
   "pk": 9,
   "fields": {
-    "name": "뷰좋음"
+    "name": "뷰좋음",
+    "group": "common"
   }
 },
 {
   "model": "main.tag",
   "pk": 10,
   "fields": {
-    "name": "사람많음"
+    "name": "사람많음",
+    "group": "common"
   }
 },
 {
   "model": "main.tag",
   "pk": 11,
   "fields": {
-    "name": "테이블넓음"
+    "name": "테이블넓음",
+    "group": "culture"
   }
 },
 {
   "model": "main.tag",
   "pk": 12,
   "fields": {
-    "name": "와이파이빵빵"
+    "name": "와이파이빵빵",
+    "group": "culture"
   }
 },
 {
   "model": "main.tag",
   "pk": 13,
   "fields": {
-    "name": "인테리어예쁨"
+    "name": "인테리어예쁨",
+    "group": "common"
   }
 },
 {
   "model": "main.tag",
   "pk": 14,
   "fields": {
-    "name": "가성비좋음"
+    "name": "가성비좋음",
+    "group": "culture"
   }
 },
 {
   "model": "main.tag",
   "pk": 15,
   "fields": {
-    "name": "반려동물가능"
+    "name": "반려동물가능",
+    "group": "common"
   }
 },
 {
   "model": "main.tag",
   "pk": 16,
   "fields": {
-    "name": "구경하기좋음"
+    "name": "구경하기좋음",
+    "group": "culture"
   }
 },
 {
   "model": "main.tag",
   "pk": 17,
   "fields": {
-    "name": "혼자온사람많음"
+    "name": "혼자온사람많음",
+    "group": "common"
+  }
+},
+{
+  "model": "main.tag",
+  "pk": 18,
+  "fields": {
+    "name": "구경거리많음",
+    "group": "food"
+  }
+},
+{
+  "model": "main.tag",
+  "pk": 19,
+  "fields": {
+    "name": "재방문의사있음",
+    "group": "food"
+  }
+},
+{
+  "model": "main.tag",
+  "pk": 20,
+  "fields": {
+    "name": "아기자기함",
+    "group": "food"
+  }
+},
+{
+  "model": "main.tag",
+  "pk": 21,
+  "fields": {
+    "name": "굿즈맛집",
+    "group": "food"
+  }
+},
+{
+  "model": "main.tag",
+  "pk": 22,
+  "fields": {
+    "name": "특별한경험",
+    "group": "food"
+  }
+},
+{
+  "model": "main.tag",
+  "pk": 23,
+  "fields": {
+    "name": "시간순삭",
+    "group": "food"
+  }
+},
+{
+  "model": "main.tag",
+  "pk": 24,
+  "fields": {
+    "name": "사진맛집",
+    "group": "food"
   }
 },
 {
@@ -254,77 +271,264 @@
   "model": "main.purpose",
   "pk": 1,
   "fields": {
-    "name": "공부"
+    "name": "공부",
+    "group": "culture"
   }
 },
 {
   "model": "main.purpose",
   "pk": 2,
   "fields": {
-    "name": "과제"
+    "name": "과제",
+    "group": "culture"
   }
 },
 {
   "model": "main.purpose",
   "pk": 3,
   "fields": {
-    "name": "독서"
+    "name": "독서",
+    "group": "common"
   }
 },
 {
   "model": "main.purpose",
   "pk": 4,
   "fields": {
-    "name": "혼밥"
+    "name": "혼밥",
+    "group": "culture"
   }
 },
 {
   "model": "main.purpose",
   "pk": 5,
   "fields": {
-    "name": "데이트"
+    "name": "데이트",
+    "group": "common"
   }
 },
 {
   "model": "main.purpose",
   "pk": 6,
   "fields": {
-    "name": "구경"
+    "name": "구경",
+    "group": "common"
   }
 },
 {
   "model": "main.purpose",
   "pk": 7,
   "fields": {
-    "name": "작업"
+    "name": "작업",
+    "group": "common"
   }
 },
 {
   "model": "main.purpose",
   "pk": 8,
   "fields": {
-    "name": "휴식"
+    "name": "휴식",
+    "group": "common"
   }
 },
 {
   "model": "main.purpose",
   "pk": 9,
   "fields": {
-    "name": "대기"
+    "name": "대기",
+    "group": "common"
   }
 },
 {
   "model": "main.purpose",
   "pk": 10,
   "fields": {
-    "name": "모임 전"
+    "name": "모임 전",
+    "group": "common"
   }
 },
 {
   "model": "main.purpose",
   "pk": 11,
   "fields": {
-    "name": "기타"
+    "name": "기타",
+    "group": "common"
+  }
+},
+{
+  "model": "main.purpose",
+  "pk": 12,
+  "fields": {
+    "name": "힐링",
+    "group": "food"
+  }
+},
+{
+  "model": "main.purpose",
+  "pk": 13,
+  "fields": {
+    "name": "굿즈구매",
+    "group": "food"
+  }
+},
+{
+  "model": "main.purpose",
+  "pk": 14,
+  "fields": {
+    "name": "문화생활",
+    "group": "food"
+  }
+},
+{
+  "model": "main.place",
+  "pk": 1,
+  "fields": {
+    "name": "어글리 베이컨 연남점",
+    "recommended_level": 1,
+    "category": "카페",
+    "address": "서울 마포구 성미산로 161-1 1층",
+    "descirptions": "",
+    "opening_hours": "",
+    "tel": "",
+    "has_wifi": false,
+    "has_con": false,
+    "has_kiosk": false,
+    "has_single_seat": false,
+    "has_partition": false,
+    "created_at": "2026-06-22T17:36:01.712Z",
+    "latitude": 37.5636,
+    "longitude": 126.925,
+    "kakao_id": ""
+  }
+},
+{
+  "model": "main.place",
+  "pk": 2,
+  "fields": {
+    "name": "모리짱",
+    "recommended_level": 3,
+    "category": "음식점",
+    "address": "서울 중구 서애로 12",
+    "descirptions": "",
+    "opening_hours": "",
+    "tel": "02-2271-0393",
+    "has_wifi": false,
+    "has_con": false,
+    "has_kiosk": false,
+    "has_single_seat": false,
+    "has_partition": false,
+    "created_at": "2026-06-22T21:01:37.124Z",
+    "latitude": 37.56124534455628,
+    "longitude": 126.99800233543236,
+    "kakao_id": "12976949"
+  }
+},
+{
+  "model": "main.place",
+  "pk": 3,
+  "fields": {
+    "name": "CGV 용산아이파크몰",
+    "recommended_level": 1,
+    "category": "문화시설",
+    "address": "서울 용산구 한강대로23길 55",
+    "descirptions": "",
+    "opening_hours": "",
+    "tel": "1544-1122",
+    "has_wifi": false,
+    "has_con": false,
+    "has_kiosk": false,
+    "has_single_seat": false,
+    "has_partition": false,
+    "created_at": "2026-06-23T13:31:54.825Z",
+    "latitude": 37.529654519920584,
+    "longitude": 126.96423822386969,
+    "kakao_id": "10813506"
+  }
+},
+{
+  "model": "main.place",
+  "pk": 4,
+  "fields": {
+    "name": "로마경양식",
+    "recommended_level": 3,
+    "category": "음식점",
+    "address": "경기 수원시 팔달구 경수대로 549",
+    "descirptions": "",
+    "opening_hours": "",
+    "tel": "031-235-8277",
+    "has_wifi": true,
+    "has_con": true,
+    "has_kiosk": true,
+    "has_single_seat": true,
+    "has_partition": false,
+    "created_at": "2026-06-23T14:14:38.191Z",
+    "latitude": 37.27482054250552,
+    "longitude": 127.02921401884957,
+    "kakao_id": "13271621"
+  }
+},
+{
+  "model": "main.placeimage",
+  "pk": 1,
+  "fields": {
+    "place": 1,
+    "image": "places/스크린샷_2026-05-11_오후_11_L6v6GTm.26.41.png"
+  }
+},
+{
+  "model": "main.placeimage",
+  "pk": 2,
+  "fields": {
+    "place": 1,
+    "image": "places/스크린샷_2026-06-21_오전_5_8bEFUSq.58.53.png"
+  }
+},
+{
+  "model": "main.placeimage",
+  "pk": 3,
+  "fields": {
+    "place": 1,
+    "image": "places/_77a21538-53ac-4c8c-bb3b-0bd61109a716.jpg"
+  }
+},
+{
+  "model": "main.placeimage",
+  "pk": 4,
+  "fields": {
+    "place": 1,
+    "image": "places/스크린샷_2026-05-19_오후_5.31.17.png"
+  }
+},
+{
+  "model": "main.placeimage",
+  "pk": 5,
+  "fields": {
+    "place": 4,
+    "image": "reviews/스크린샷_2026-06-22_오후_3.30.08.png"
+  }
+},
+{
+  "model": "main.placeimage",
+  "pk": 6,
+  "fields": {
+    "place": 4,
+    "image": "reviews/스크린샷_2026-06-22_오후_3.30.16.png"
+  }
+},
+{
+  "model": "main.placeimage",
+  "pk": 7,
+  "fields": {
+    "place": 4,
+    "image": "reviews/스크린샷_2026-06-22_오후_3.30.22.png"
+  }
+},
+{
+  "model": "main.placeimage",
+  "pk": 8,
+  "fields": {
+    "place": 4,
+    "image": "reviews/스크린샷_2026-06-22_오후_3.30.28.png"
   }
 }
 ]

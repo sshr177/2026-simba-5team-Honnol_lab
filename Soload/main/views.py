@@ -162,6 +162,7 @@ def createreview(request, place_id):
             has_single_seat=request.POST.get('has_single_seat') == 'yes',
             has_con=request.POST.get('has_con') == 'yes',
             has_wifi=request.POST.get('has_wifi') == 'yes',
+            stay_time=request.POST.get('stay_time', ''),
             content=request.POST.get('content'),
         )
         for tid in request.POST.getlist('tags'):
@@ -197,12 +198,16 @@ def createreview(request, place_id):
             p.level +=1
         p.save()
         return redirect('placeinfo', place_id=place.id)
+ 
+    group = get_place_group(place.category)
+ 
     return render(request, 'pages/createreview.html', 
         {
         'place': place,
-        'tags': Tag.objects.all(),
+        'group': group,
+        'tags': Tag.objects.filter(group__in=[group, 'common']),
         'visit_times': VisitTime.objects.all(),
-        'purposes': Purpose.objects.all(),
+        'purposes': Purpose.objects.filter(group__in=[group, 'common']),
         }
         )
 
@@ -286,3 +291,10 @@ def create_place(request):
             return redirect('createreview', place_id=place.id)
         return JsonResponse({'exists': False})
     return redirect('main')
+
+
+def get_place_group(category):
+    if category in ('카페', '음식점'):
+        return 'food'
+    return 'culture'
+

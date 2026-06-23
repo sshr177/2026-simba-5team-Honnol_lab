@@ -9,6 +9,19 @@ from django.db.models.signals import post_save
 LEVEL_NAME = {1: "달걀", 2: "병아리", 3: "용감 병아리", 4: "혼놀 영계", 5: "혼놀 마스터 닭"}
 REQUIRED_EXP = {1: 100, 2: 200, 3: 300, 4: 400, 5: 0}
 
+GROUP_CHOICES = [
+    ('food', '카페/음식점'),
+    ('culture', '전시/공연/소품'),
+    ('common', '공통'),
+]
+
+STAY_CHOICES = [
+    ('30분 이하', '30분이하'),
+    ('30분-1시간', '30분-1시간'),
+    ('1시간-2시간', '1시간-2시간'),
+    ('2시간 이상', '2시간 이상'),
+]
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     nickname = models.CharField(max_length=30, blank=True)
@@ -51,7 +64,6 @@ class Place(models.Model):
     has_kiosk = models.BooleanField(default=False)
     has_single_seat = models.BooleanField(default=False)
     has_partition = models.BooleanField(default=False)
-    parking_available = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     latitude = models.FloatField(null=True, blank=True)
     longitude = models.FloatField(null=True, blank=True)
@@ -74,6 +86,7 @@ class PlaceImage(models.Model):
 
 class Tag(models.Model):
     name = models.CharField(max_length=30)
+    group = models.CharField(max_length=10, choices=GROUP_CHOICES, default='common')
     def __str__(self):
         return self.name
     
@@ -84,6 +97,7 @@ class VisitTime(models.Model):
 
 class Purpose(models.Model):
     name = models.CharField(max_length=30)
+    group = models.CharField(max_length=10, choices=GROUP_CHOICES, default='common')
     def __str__(self):
         return self.name
 
@@ -97,6 +111,7 @@ class Review(models.Model):
     has_con = models.BooleanField(default=False)
     has_kiosk = models.BooleanField(default=False)
     has_single_seat = models.BooleanField(default=False)
+    stay_time = models.CharField(max_length=20, choices=STAY_CHOICES, blank=True)
     content = models.TextField()
     tags = models.ManyToManyField(Tag, related_name='reviews', blank=True)
     visit_times = models.ManyToManyField(VisitTime, related_name='reviews', blank=True)
