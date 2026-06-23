@@ -80,3 +80,12 @@ font-style: normal;
 font-weight: 400;
 line-height: normal;
 }
+
+html,
+body,
+button,
+input,
+textarea,
+select {
+    font-family: "Pretendard", "Noto Sans KR", sans-serif;
+}

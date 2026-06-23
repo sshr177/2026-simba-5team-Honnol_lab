@@ -16,10 +16,19 @@ document.addEventListener("DOMContentLoaded", function () {
     const searchInput = document.getElementById("place-search-input");
     const searchButton = document.getElementById("place-search-button");
     const resultList = document.getElementById("search-result-list");
+    const mapControl = document.querySelector(".map-control");
+    const mapZoomInButton = document.getElementById("map-zoom-in-button");
+    const mapZoomOutButton = document.getElementById("map-zoom-out-button");
+    const mapCurrentLocationButton = document.getElementById("map-current-location-button");
 
     const placesService = new kakao.maps.services.Places();
     const placesDataElement = document.getElementById("places-data");
     let searchPreviewMarker = null;
+    let currentLocationMarker = null;
+
+    if (mapControl) {
+        mapContainer.appendChild(mapControl);
+    }
 
     function getCSRFToken() {
         const cookie = document.cookie
@@ -211,6 +220,57 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!searchInput || !searchButton) {
         console.log("검색창 또는 검색 버튼을 찾지 못했습니다.");
         return;
+    }
+
+    if (mapZoomInButton) {
+        mapZoomInButton.addEventListener("click", function () {
+            const level = map.getLevel();
+            map.setLevel(Math.max(level - 1, 1));
+        });
+    }
+
+    if (mapZoomOutButton) {
+        mapZoomOutButton.addEventListener("click", function () {
+            const level = map.getLevel();
+            map.setLevel(Math.min(level + 1, 14));
+        });
+    }
+
+    if (mapCurrentLocationButton) {
+        mapCurrentLocationButton.addEventListener("click", function () {
+            if (!navigator.geolocation) {
+                alert("현재 위치를 사용할 수 없습니다.");
+                return;
+            }
+
+            navigator.geolocation.getCurrentPosition(
+                function (position) {
+                    const currentPosition = new kakao.maps.LatLng(
+                        position.coords.latitude,
+                        position.coords.longitude
+                    );
+
+                    map.panTo(currentPosition);
+
+                    if (currentLocationMarker) {
+                        currentLocationMarker.setMap(null);
+                    }
+
+                    currentLocationMarker = new kakao.maps.Marker({
+                        map: map,
+                        position: currentPosition
+                    });
+                },
+                function () {
+                    alert("현재 위치를 가져오지 못했습니다.");
+                },
+                {
+                    enableHighAccuracy: true,
+                    timeout: 8000,
+                    maximumAge: 0
+                }
+            );
+        });
     }
 
     function searchPlaces() {

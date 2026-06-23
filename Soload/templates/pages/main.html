@@ -75,7 +75,13 @@
 
         <div class="search-result-list" id="search-result-list"></div>
 
-        <div class="map-section_map" id="map"></div>
+        <div class="map-section_map" id="map">
+            <div class="map-control">
+                <button type="button" id="map-zoom-in-button" aria-label="지도 확대">+</button>
+                <button type="button" id="map-zoom-out-button" aria-label="지도 축소">-</button>
+                <button type="button" id="map-current-location-button" aria-label="현재 위치로 이동">⌖</button>
+            </div>
+        </div>
     </section>
 
     {{ places_data|json_script:"places-data" }}

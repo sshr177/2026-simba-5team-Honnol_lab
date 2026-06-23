@@ -186,7 +186,7 @@ def createreview(request, place_id):
         place.save()
 
         p = request.user.profile
-        p.exp += 50 #리뷰작성시 들어오는 경험치
+        p.exp += 10 #리뷰작성시 들어오는 경험치
         if p.exp >= p.required_exp() and p.level < 5:
             p.exp -= p.required_exp()
             p.level +=1

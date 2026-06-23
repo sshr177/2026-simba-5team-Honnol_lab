@@ -80,6 +80,14 @@
     background-color: #fffdf2;
 }
 
+.signup-help-text {
+    margin: -4px 0 0;
+    color: #a16207;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.4;
+}
+
 .signup-button {
     width: 100%;
     height: clamp(48px, 7vh, 60px);
