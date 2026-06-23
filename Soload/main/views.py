@@ -66,10 +66,10 @@ def login(request):
 
 def signup(request):
     if request.method == 'POST':
-        email = request.POST.get('email', ''),
-        username = request.POST('username', ''),
-        password = request.POST('password', ''),
-        confirm = request.POST('confirm', ''),
+        email = request.POST.get('email', '')
+        username = request.POST.get('username', '')
+        password = request.POST.get('password', '')
+        confirm = request.POST.get('confirm', '')
 
         special_chars = "!@#$%^&*()_+-=[]{};:,.<>?/|~`"
         
