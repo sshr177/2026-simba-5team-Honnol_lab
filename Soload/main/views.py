@@ -217,28 +217,12 @@ def mypage(request):
     if not request.user.is_authenticated:
         return redirect('start')
 
-    profile_error = None
-
-    if request.method == 'POST' and request.POST.get('form_type') == 'profile_edit':
-        nickname = request.POST.get('nickname', '').strip()
-
-        profile = request.user.profile
-        profile.nickname = nickname
-
-        if request.FILES.get('image'):
-            profile.image = request.FILES['image']
-
-        profile.save()
-
-        return redirect('mypage')
-
     likes = PlaceLike.objects.filter(user=request.user)
     my_reviews = Review.objects.filter(writer=request.user)
     return render(request, 'pages/mypage.html', {
         'likes': likes,
         'my_reviews': my_reviews,
         'active_nav': 'mypage',
-        'profile_error': profile_error,
     })
 
 def start(request):
@@ -314,14 +298,111 @@ def user_profile(request, user_id):
     if not request.user.is_authenticated:
         return redirect('start')
 
+    if request.user.id == user_id:
+        return redirect('mypage')
+
     profile_user = get_object_or_404(User, pk=user_id)
-    likes = PlaceLike.objects.filter(user=profile_user).select_related('place')
-    my_reviews = Review.objects.filter(writer=profile_user).select_related('place')
     
     return render(request, 'pages/user_profile.html',{
         'profile_user': profile_user,
         'user_profile': profile_user.profile,
-        'likes': likes,
-        'my_reviews': my_reviews,
-        'is_own_profile': request.user == profile_user,
+        'likes': PlaceLike.objects.filter(user=profile_user),
+        'my_reviews': Review.objects.filter(writer=profile_user),
+    })
+
+
+def follow(request, user_id):
+    if not request.user.is_authenticated:
+        return redirect('start')
+    target = get_object_or_404(User, pk=user_id)
+    if request.user == target:
+        return redirect('user_profile', user_id=user_id)
+    
+    me = request.user.profile
+
+    if me in target.profile.followers.all():
+        me.followings.remove(target.profile)
+    else:
+        me.followings.add(target.profile)
+    
+    return redirect('user_profile', user_id=target.id)
+
+def edit_profile(request):
+    if not request.user.is_authenticated:
+        return redirect('start')
+    
+    profile = request.user.profile
+
+    if request.method == 'POST':
+        profile.nickname = request.POST.get('nickname', profile.nickname)
+        
+        if request.FILES.get('profile_image'):
+            profile.profile_image = request.FILES.get('profile_image')
+        
+        profile.save()
+        return redirect('mypage')
+    return render(request, 'pages/edit_profile.html', {'profile': profile})
+
+def review_like(request, review_id):
+    if not request.user.is_authenticated:
+        return JsonResponse({'success': False}, status=403)
+    review = get_object_or_404(Review, pk=review_id)
+    
+    if request.user in review.likes.all():
+        review.likes.remove(request.user)
+        liked = False
+    else:
+        review.likes.add(request.user)
+        liked = True
+    return JsonResponse({'success': True, 'liked': liked, 'count': review.likes.count()})   
+    
+
+
+ 
+def review_update(request, review_id):
+    review = get_object_or_404(Review, pk=review_id)
+    
+    if review.writer != request.user:
+        return redirect('main')
+    
+    place = review.place
+
+    if request.method == 'POST':
+        review.nunchi_score = int(request.POST.get('nunchi_score', 1))
+        review.rating = float(request.POST.get('rating', 5))
+        review.recommended_level = int(request.POST.get('recommended_level', 1))
+        review.has_kiosk = request.POST.get('has_kiosk') == 'yes'
+        review.has_single_seat = request.POST.get('has_single_seat') == 'yes'
+        review.has_con = request.POST.get('has_con') == 'yes'
+        review.has_wifi = request.POST.get('has_wifi') == 'yes'
+        review.stay_time = request.POST.get('stay_time', '')
+        review.content = request.POST.get('content')
+        review.save()
+
+        review.tags.clear()
+        for tid in request.POST.getlist('tags'):
+            review.tags.add(get_object_or_404(Tag, pk=tid))
+        
+        review.visit_times.clear()
+        for vid in request.POST.getlist('visit_times'):
+            review.visit_times.add(get_object_or_404(VisitTime, pk=vid))
+       
+        review.purposes.clear()
+        for pid in request.POST.getlist('purposes'):
+            review.purposes.add(get_object_or_404(Purpose, pk=pid))
+
+        return redirect('placeinfo', place_id=place.id)
+    
+    group = get_place_group(place.category)
+    return render(request, 'pages/createreview.html', {
+        'place': place,
+        'review': review,
+        'group': group,
+        'tags': Tag.objects.filter(group__in=[group, 'common']),
+        'visit_times': VisitTime.objects.all(),
+        'purposes': Purpose.objects.filter(group__in=[group, 'common']),
+        'stay_choices': Review._meta.get_field('stay_time').choices,
+        'selected_tags': list(review.tags.values_list('id', flat=True)),
+        'selected_visit_times': list(review.visit_times.values_list('id', flat=True)),
+        'selected_purposes': list(review.purposes.values_list('id', flat=True)),
     })

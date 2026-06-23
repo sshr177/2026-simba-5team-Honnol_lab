@@ -25,10 +25,11 @@ STAY_CHOICES = [
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     nickname = models.CharField(max_length=30, blank=True)
-    image = models.ImageField(upload_to='profiles/', blank=True)
     level = models.IntegerField(default=1)
     exp = models.IntegerField(default=0)
     test_score = models.IntegerField(default=0)
+    followings = models.ManyToManyField('self', symmetrical=False, related_name='followers', blank=True)
+    profile_image = models.ImageField(upload_to='profile/', blank=True, null=True)
 
     def level_name(self):
         return LEVEL_NAME.get(self.level, "달걀")
@@ -123,6 +124,7 @@ class Review(models.Model):
     visit_times = models.ManyToManyField(VisitTime, related_name='reviews', blank=True)
     purposes = models.ManyToManyField(Purpose, related_name='reviews', blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    likes = models.ManyToManyField(User, related_name='liked_reviews', blank=True)
     def __str__(self):
         return f"{self.place.name} - {self.writer.profile.nickname}"
 
