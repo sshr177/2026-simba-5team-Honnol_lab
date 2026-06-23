@@ -10,8 +10,7 @@
 
     <section class="level-section">
         <div class="level-section-badge">
-            <span class="level">{{ user_profile.level }}</span>
-            <span class="level_name">{{ user_profile.level_name }}</span>
+            <img src="{{ user_profile.character_image }}" alt="{{ user_profile.level_name}}" class="mainpage_character-image">
         </div>
 
         <div class="level-section_info">
@@ -35,7 +34,7 @@
             {% for place in places|slice:":3" %}
             <div class="place-card">
                 <a href="{% url 'placeinfo' place.id %}" class="place-card_link">
-                    <span class="place-card_tag">{{ place.recommended_level }} 추천</span>
+                    <span class="place-card_tag">Lv.{{ place.recommended_level }} 추천</span>
 
                     <div class="place-card_image">
                         {% if place.thumbnail %}

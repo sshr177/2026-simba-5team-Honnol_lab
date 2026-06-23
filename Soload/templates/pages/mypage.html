@@ -36,20 +36,24 @@
         <section class = "growth-section">
             <div class = "growth-section_title">병아리 성장단계</div>
             <div class = "growth-stage-list">
-                <div class = "growth-stage">
-                    <img src="{% static 'images/chick-stage-1.png' %}" alt = "1단계 병아리">
+                <div class="growth-stage {% if user_profile.level == 1 %}growth-stage--active{% endif %}">
+                    <img src="{% static 'images/chick-stage-1.png' %}" alt="1단계 병아리">
                 </div>
-                <div class = "growth-stage">
-                    <img src="{% static 'images/chick-stage-2.png' %}" alt = "2단계 병아리">
+
+                <div class="growth-stage {% if user_profile.level == 2 %}growth-stage--active{% endif %}">
+                    <img src="{% static 'images/chick-stage-2.png' %}" alt="2단계 병아리">
                 </div>
-                <div class = "growth-stage">
-                    <img src="{% static 'images/chick-stage-3.png' %}" alt = "3단계 병아리">
+
+                <div class="growth-stage {% if user_profile.level == 3 %}growth-stage--active{% endif %}">
+                    <img src="{% static 'images/chick-stage-3.png' %}" alt="3단계 병아리">
                 </div>
-                <div class = "growth-stage">
-                    <img src="{% static 'images/chick-stage-4.png' %}" alt = "4단계 병아리">
+
+                <div class="growth-stage {% if user_profile.level == 4 %}growth-stage--active{% endif %}">
+                    <img src="{% static 'images/chick-stage-4.png' %}" alt="4단계 병아리">
                 </div>
-                <div class = "growth-stage">
-                    <img src="{% static 'images/chick-stage-5.png' %}" alt = "5단계 병아리">
+
+                <div class="growth-stage {% if user_profile.level == 5 %}growth-stage--active{% endif %}">
+                    <img src="{% static 'images/chick-stage-5.png' %}" alt="5단계 병아리">
                 </div>
             </div>
 
