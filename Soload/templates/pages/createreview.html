@@ -11,7 +11,7 @@
     <!-- 장소 DB내용으로 변경 필요-->
     <span class="subtitle-brown"><i class="fa-solid fa-location-dot"></i>  장소 정보: {{ place.name }}</span>
 </div>
-<form method="post" id="review-form">
+<form method="post" id="review-form" enctype="multipart/form-data">
     {% csrf_token %}
 <div class="review_main">
     <div class="review_write">
@@ -136,7 +136,7 @@
             <span class="brown-light-s">관련 사진을 자유롭게 업로드해주세요.</span>
         </div>
         <div class="photo-upload">
-            <input type="file" name="image" id="review-image" multiple>
+            <input type="file" name="images" id="review-image" accept="image/*" multiple>
             <label for="review-image" class="photo-upload-label brown-light-l">사진 선택하기</label>
             <span class="brown-light-l" id="photo-upload-file-name">선택된 사진 없음</span>
         </div>

@@ -1,13 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const tagCheckboxes = document.querySelectorAll(
-        'input[name="tags"]'
-    );
+    const tagCheckboxes = document.querySelectorAll('input[name="tags"]');
 
     tagCheckboxes.forEach(function (checkbox) {
         checkbox.addEventListener("change", function () {
-            const selectedTags = document.querySelectorAll(
-                'input[name="tags"]:checked'
-            );
+            const selectedTags = document.querySelectorAll('input[name="tags"]:checked');
 
             if (selectedTags.length > 4) {
                 checkbox.checked = false;
@@ -34,9 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ];
 
         for (const groupName of requiredGroups) {
-            const checkedInput = document.querySelector(
-                `input[name="${groupName}"]:checked`
-            );
+            const checkedInput = document.querySelector(`input[name="${groupName}"]:checked`);
 
             if (checkedInput === null) {
                 event.preventDefault();
@@ -45,13 +39,12 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
 
-        const review = document.querySelector(
-            'textarea[name="content"]'
-        );
+        const review = document.querySelector('textarea[name="content"]');
 
         if (review.value.trim() === "") {
             event.preventDefault();
-            alert("한 줄 후기를 작성해주세요.");
+            alert("한줄 후기를 작성해주세요.");
+            return;
         }
 
         savePopup.classList.add("open");
@@ -60,19 +53,21 @@ document.addEventListener("DOMContentLoaded", function () {
     const reviewImageInput = document.querySelector("#review-image");
     const photoUploadFileName = document.querySelector("#photo-upload-file-name");
 
-    reviewImageInput.addEventListener("change", function () {
-        const fileCount = reviewImageInput.files.length;
+    if (reviewImageInput && photoUploadFileName) {
+        reviewImageInput.addEventListener("change", function () {
+            const fileCount = reviewImageInput.files.length;
 
-        if (fileCount === 0) {
-            photoUploadFileName.textContent = "선택된 사진 없음";
-            return;
-        }
+            if (fileCount === 0) {
+                photoUploadFileName.textContent = "선택된 사진 없음";
+                return;
+            }
 
-        if (fileCount === 1) {
-            photoUploadFileName.textContent = reviewImageInput.files[0].name;
-            return;
-        }
+            if (fileCount === 1) {
+                photoUploadFileName.textContent = reviewImageInput.files[0].name;
+                return;
+            }
 
-        photoUploadFileName.textContent = `${fileCount}개의 사진 선택됨`;
-    });
+            photoUploadFileName.textContent = `${fileCount}개의 사진 선택됨`;
+        });
+    }
 });
