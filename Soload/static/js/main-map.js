@@ -184,3 +184,46 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+const likeButtons = document.querySelectorAll(".place-card_like");
+
+likeButtons.forEach(function (button) {
+    button.addEventListener("click", function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const placeId = button.dataset.placeId;
+
+        fetch(`/place/${placeId}/like/`, {
+            method: "POST",
+            headers: {
+                "X-CSRFToken": getCSRFToken()
+            }
+        })
+        .then(function (response) {
+            if (!response.ok) {
+                throw new Error("찜 요청 실패");
+            }
+
+            return response.json();
+        })
+        .then(function (data) {
+            if (!data.success) {
+                return;
+            }
+
+            if (data.liked) {
+                button.textContent = "♥";
+                button.dataset.liked = "true";
+                button.classList.add("place-card_like--active");
+            } else {
+                button.textContent = "♡";
+                button.dataset.liked = "false";
+                button.classList.remove("place-card_like--active");
+            }
+        })
+        .catch(function (error) {
+            console.error("찜 처리 중 오류:", error);
+        });
+    });
+});

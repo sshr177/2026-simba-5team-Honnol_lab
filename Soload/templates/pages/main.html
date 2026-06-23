@@ -32,22 +32,36 @@
         <span class="level-recommend-place">레벨에 따른 장소 추천</span>
 
         <div class="place-card-list">
-            {% for place in places%}
-            <a href="{% url 'placeinfo' place.id %}" class="place-card">
-                <span class="place-card_tag">{{ place.recommended_level }} 추천</span>
+            {% for place in places|slice:":3" %}
+            <div class="place-card">
+                <a href="{% url 'placeinfo' place.id %}" class="place-card_link">
+                    <span class="place-card_tag">{{ place.recommended_level }} 추천</span>
 
-                <div class="place-card_image">
-                    {% if place.thumbnail %}
-                        <img src="{{ place.thumbnail }}" alt="{{ place.name }}">
+                    <div class="place-card_image">
+                        {% if place.thumbnail %}
+                            <img src="{{ place.thumbnail }}" alt="{{ place.name }}">
+                        {% endif %}
+                    </div>
+
+                    <div class="place-card_body">
+                        <span class="place-name">{{ place.name }}</span>
+                        <p>{{ place.address }}</p>
+                    </div>
+                </a>
+
+                <button
+                    type="button"
+                    class="place-card_like"
+                    data-place-id="{{ place.id }}"
+                    data-liked="{% if place.id in liked_place_ids %}true{% else %}false{% endif %}"
+                >
+                    {% if place.id in liked_place_ids %}
+                        ♥
+                    {% else %}
+                        ♡
                     {% endif %}
-                </div>
-
-                <div class="place-card_body">
-                    <span class="place-name">{{ place.name }}</span>
-                    <p>{{ place.address }}</p>
-                    <button type="button" class="place-card_like">♡</button>
-                </div>
-            </a>
+                </button>
+            </div>
             {% empty %}
             <p>추천할 장소가 아직 없어요.</p>
             {% endfor %}
