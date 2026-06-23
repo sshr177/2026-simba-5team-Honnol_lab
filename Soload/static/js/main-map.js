@@ -34,6 +34,38 @@ document.addEventListener("DOMContentLoaded", function () {
         return cookie.split("=")[1];
     }
 
+    function getCategoryClass(category) {
+        if (!category) {
+            return "place-map-marker--default";
+        }
+
+        if (category === "카페") {
+            return "place-map-marker--cafe";
+        }
+
+        if (category === "음식점") {
+            return "place-map-marker--restaurant";
+        }
+
+        if (category === "문화시설") {
+            return "place-map-marker--culture";
+        }
+
+        if (category === "관광명소") {
+            return "place-map-marker--tour";
+        }
+
+        if (category === "숙박") {
+            return "place-map-marker--hotel";
+        }
+
+        if (category === "병원") {
+            return "place-map-marker--hospital";
+        }
+
+        return "place-map-marker--default";
+    }
+
     if (placesDataElement) {
         const savedPlaces = JSON.parse(placesDataElement.textContent);
 
@@ -43,13 +75,27 @@ document.addEventListener("DOMContentLoaded", function () {
                 Number(place.lng)
             );
 
-            const marker = new kakao.maps.Marker({
-                map: map,
-                position: position
+            const categoryClass = getCategoryClass(place.category);
+
+            const markerContent = document.createElement("button");
+            markerContent.type = "button";
+            markerContent.className = `place-map-marker ${categoryClass}`;
+
+            markerContent.innerHTML = `
+                <span class="place-map-marker-level">Lv.${place.recommended_level}</span>
+                <span class="place-map-marker-divider">|</span>
+                <span class="place-map-marker-rating">★ ${Number(place.avg_rating).toFixed(1)}</span>
+            `;
+
+            markerContent.addEventListener("click",function(){
+                window.location.href =`/placeinfo/${place.id}/`;
             });
 
-            kakao.maps.event.addListener(marker, "click", function () {
-                window.location.href = `/placeinfo/${place.id}/`;
+            new kakao.maps.CustomOverlay({
+                map: map,
+                position: position,
+                content: markerContent,
+                yAnchor: 1
             });
         });
     }
