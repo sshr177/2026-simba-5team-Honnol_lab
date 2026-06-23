@@ -44,7 +44,7 @@
   "pk": 6,
   "fields": {
     "name": "혼자공부하기좋음",
-    "group": "culture"
+    "group": "food"
   }
 },
 {
@@ -52,7 +52,7 @@
   "pk": 8,
   "fields": {
     "name": "주차가능",
-    "group": "culture"
+    "group": "food"
   }
 },
 {
@@ -76,7 +76,7 @@
   "pk": 11,
   "fields": {
     "name": "테이블넓음",
-    "group": "culture"
+    "group": "food"
   }
 },
 {
@@ -84,7 +84,7 @@
   "pk": 12,
   "fields": {
     "name": "와이파이빵빵",
-    "group": "culture"
+    "group": "food"
   }
 },
 {
@@ -100,7 +100,7 @@
   "pk": 14,
   "fields": {
     "name": "가성비좋음",
-    "group": "culture"
+    "group": "food"
   }
 },
 {
@@ -116,7 +116,7 @@
   "pk": 16,
   "fields": {
     "name": "구경하기좋음",
-    "group": "culture"
+    "group": "food"
   }
 },
 {
@@ -132,7 +132,7 @@
   "pk": 18,
   "fields": {
     "name": "구경거리많음",
-    "group": "food"
+    "group": "culture"
   }
 },
 {
@@ -140,7 +140,7 @@
   "pk": 19,
   "fields": {
     "name": "재방문의사있음",
-    "group": "food"
+    "group": "culture"
   }
 },
 {
@@ -148,7 +148,7 @@
   "pk": 20,
   "fields": {
     "name": "아기자기함",
-    "group": "food"
+    "group": "culture"
   }
 },
 {
@@ -156,7 +156,7 @@
   "pk": 21,
   "fields": {
     "name": "굿즈맛집",
-    "group": "food"
+    "group": "culture"
   }
 },
 {
@@ -164,7 +164,7 @@
   "pk": 22,
   "fields": {
     "name": "특별한경험",
-    "group": "food"
+    "group": "culture"
   }
 },
 {
@@ -172,7 +172,7 @@
   "pk": 23,
   "fields": {
     "name": "시간순삭",
-    "group": "food"
+    "group": "culture"
   }
 },
 {
@@ -180,7 +180,7 @@
   "pk": 24,
   "fields": {
     "name": "사진맛집",
-    "group": "food"
+    "group": "culture"
   }
 },
 {
@@ -188,7 +188,7 @@
   "pk": 1,
   "fields": {
     "name": "공부",
-    "group": "culture"
+    "group": "food"
   }
 },
 {
@@ -196,7 +196,7 @@
   "pk": 2,
   "fields": {
     "name": "과제",
-    "group": "culture"
+    "group": "food"
   }
 },
 {
@@ -212,7 +212,7 @@
   "pk": 4,
   "fields": {
     "name": "혼밥",
-    "group": "culture"
+    "group": "food"
   }
 },
 {
@@ -276,7 +276,7 @@
   "pk": 12,
   "fields": {
     "name": "힐링",
-    "group": "food"
+    "group": "culture"
   }
 },
 {
@@ -284,7 +284,7 @@
   "pk": 13,
   "fields": {
     "name": "굿즈구매",
-    "group": "food"
+    "group": "culture"
   }
 },
 {
@@ -292,7 +292,7 @@
   "pk": 14,
   "fields": {
     "name": "문화생활",
-    "group": "food"
+    "group": "culture"
   }
 }
 ]
