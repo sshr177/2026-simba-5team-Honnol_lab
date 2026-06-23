@@ -13,7 +13,7 @@
 
         <div class = "mypage_level-info">
             <span class = "mypage_level-title brown-dark-xl">
-                {{ user_profile.user.username }}
+                {{ user_profile.nickname|default:user_profile.user.username }}
             </span>
             
 
