@@ -212,7 +212,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    searchButton.addEventListener("click", function () {
+    function searchPlaces() {
         const keyword = searchInput.value.trim();
 
         if (!keyword) {
@@ -233,6 +233,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
             renderSearchResults(data);
         });
+    }
+
+    searchButton.addEventListener("click", function () {
+        searchPlaces();
+    });
+
+    searchInput.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            searchPlaces();
+        }
     });
 
     const likeButtons = document.querySelectorAll(".place-card_like");
